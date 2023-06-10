@@ -29,6 +29,4 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 *.sublime-project
 /tests/tests/
 /tests/results/
-/Tokopedia/
-/assets/default/assets/images/*
 application/config/database.php
