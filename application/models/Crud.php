@@ -8,6 +8,13 @@ class Crud extends CI_Model
         return $this->db->get_where($table, $where);
     }
 
+    public function get_where_select($table, $select, $where)
+    {
+        $this->db->select($select);
+        $this->db->order_by("id", "DESC");
+        return $this->db->get_where($table, $where);
+    }
+
     public function get_where_select_not_in($table, $select, $where, $notin)
     {
         $this->db->select($select);

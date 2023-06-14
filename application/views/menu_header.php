@@ -147,6 +147,14 @@
                                 </a>
                             </li>
                         <?php } ?>
+                        <?php if ($this->session->userdata('role_id') == '2') { ?>
+                            <li class="menu-title"><span data-key="t-menu">Master</span></li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?= base_url('sosiometri/konselor') ?>">
+                                    <i class="ri-account-circle-line"></i> <span data-key="t-widgets">Konselor</span>
+                                </a>
+                            </li>
+                        <?php } ?>
                         <li class="menu-title"><span data-key="t-menu">Sosiometri</span></li>
                         <?php if ($this->session->userdata('role_id') == '1') { ?>
                             <li class="nav-item">

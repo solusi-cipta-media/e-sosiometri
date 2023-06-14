@@ -64,9 +64,9 @@ class Auth extends CI_Controller
                     $this->session->set_userdata($data);
                     // redirect('dashboard');
                     if ($user['role_id'] == '1') {
-                        redirect('dashboard');
+                        redirect('sosiometri/aktivitas');
                     } else {
-                        redirect('dashboard/pekerjaan');
+                        redirect('sosiometri');
                     }
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">

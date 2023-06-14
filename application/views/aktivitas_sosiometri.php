@@ -68,7 +68,11 @@
             <!-- end page title -->
 
             <div class="alert alert-primary" role="alert">
-                <strong>Info :</strong> Halaman ini digunakan untuk menambahkan dan menghapus Kuesioner!
+                <strong>Prosedur Kuesioner :</strong><br>
+                1. Tambah Kuesioner, lakukan dengan cara klik tombol tambah kuesioner dan isi form<br>
+                2. Import data, sebelumnya siapkan data dalam bentuk excel terlebih dahulu <a href='<?= base_url('sosiometri/download/template_upload.xlsx') ?>' style="font-weight: bold;">(download template)</a><br>
+                3. Bagikan Link ke peserta dengan klik tombol link<br>
+                <!-- <strong>Info :</strong> Halaman ini digunakan untuk menambahkan dan menghapus Kuesioner! -->
             </div>
 
             <div class="row">
@@ -147,12 +151,12 @@
                                 <input type="text" class="form-control" id="kelas" onkeyup="this.value = this.value.toUpperCase()">
                             </div>
                         </div><!--end col-->
-                        <div class="col-xxl-12">
+                        <!-- <div class="col-xxl-12">
                             <div>
                                 <label for="jumlah_siswa" class="form-label">Jumlah Siswa</label>
                                 <input type="text" class="form-control" id="jumlah_siswa">
                             </div>
-                        </div><!--end col-->
+                        </div> -->
                         <div class="col-lg-12">
                             <div class="hstack gap-2 justify-content-end">
                                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
@@ -281,7 +285,14 @@
             }, {
                 "target": [<?= $target ?>],
                 "className": 'text-center py-1',
-                "data": "data.jumlah_siswa",
+                "data": "data",
+                "render": function(data) {
+                    if (data.jumlah_siswa == 0) {
+                        return `Belum Upload`
+                    } else {
+                        return data.jumlah_siswa
+                    }
+                }
             }, {
                 "target": [<?= $target ?>],
                 "className": 'text-center py-1',
@@ -294,7 +305,7 @@
                     return `<button type="button" class="btn btn-sm btn-success" onclick=import_data('` + data.batch + `')><i class="ri-file-excel-line"></i> Import</button>
                     <input type="text" id="mylink" style="display: none;">
                     <button type="button" class="btn btn-sm btn-info" onclick=copyclipboard('` + data.link + `')><i class="ri-links-line"></i> Link</button>
-                    <button type="button" class="btn btn-sm btn-danger" onclick=delete_data('` + data.id + `')><i class="ri-delete-bin-line"></i> Hapus</button>`
+                    <button type="button" class="btn btn-sm btn-danger" onclick=delete_data('` + data.id + `','` + data.batch + `')><i class="ri-delete-bin-line"></i> Hapus</button>`
                 }
             }, ],
             "dom": '<"row" <"col-md-6" l><"col-md-6" f>>rt<"row" <"col-md-6" i><"col-md-6" p>>',
@@ -311,7 +322,7 @@
         // alert('OK')
         e.preventDefault()
 
-        if ($('#tema').val() == '' || $('#kelas').val() == '' || $('#jumlah_siswa').val() == '') {
+        if ($('#tema').val() == '' || $('#kelas').val() == '') {
             Swal.fire(
                 'error!',
                 'Tidak boleh ada kolom kosong!',
@@ -325,7 +336,6 @@
         form_data.append('table', 'tbl_sosiometri');
         form_data.append('tema', $("#tema").val());
         form_data.append('kelas', $("#kelas").val());
-        form_data.append('jumlah_siswa', $("#jumlah_siswa").val());
 
         var url_ajax = '<?= base_url() ?>sosiometri/insert_data_aktivitas'
 
@@ -347,7 +357,6 @@
                     )
                     $('#tema').val('')
                     $('#kelas').val('')
-                    $('#jumlah_siswa').val('')
                     $('#exampleModalgrid').modal('hide');
                     reload_table()
                 } else {
@@ -410,7 +419,7 @@
 
                     reload_table()
                 } else {
-                    default_submit()
+                    // default_submit()
                     Swal.fire(
                         "Oops!",
                         result.message,
@@ -435,7 +444,7 @@
         $("#modalimport").modal('hide')
     }
 
-    function delete_data(id) {
+    function delete_data(id, batch) {
 
         Swal.fire({
             title: 'Apakah Anda Yakin ?',
@@ -448,9 +457,10 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: '<?= base_url() ?>sosiometri/delete_data',
+                    url: '<?= base_url() ?>sosiometri/delete_data_sosiometri',
                     data: {
                         id: id,
+                        batch: batch,
                         table: "tbl_sosiometri"
                     },
                     type: 'post',

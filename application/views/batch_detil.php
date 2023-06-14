@@ -74,12 +74,21 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="card">
+                        <!-- <div class="card-header d-flex justify-content-between"> -->
                         <div class="card-header d-flex justify-content-between">
+
                             <h5 class="card-title mb-0">Perserta Kuesioner - Batch <?= $batch ?></h5>
-                            <!-- <button type="button" class="btn btn-secondary waves-effect waves-light"><i class="las la-plus-circle" data-bs-toggle="modal" data-bs-target="#myModal"></i> Tambah User</button> -->
-                            <a href="<?= base_url('sosiometri/aktivitas') ?>" type="button" class="btn btn-danger">
-                                <i class="ri-arrow-left-fill"></i> Kembali
-                            </a>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <a href="<?= base_url('sosiometri/aktivitas') ?>" type="button" class="btn btn-danger">
+                                        <i class="ri-arrow-left-fill"></i> Kembali
+                                    </a>
+                                    <button type="button" class="btn btn-info" id="btn-tambah">
+                                        <i class="ri-add-circle-line"></i> Tambah
+                                    </button>
+                                </div>
+                            </div>
+
                         </div>
                         <div class="card-body">
                             <table id="table-kuesioner" class="table table-bordered dt-responsive nowrap table-striped align-middle" style="width:100%">
@@ -91,6 +100,7 @@
                                         <th data-ordering="false">Kelas</th>
                                         <th data-ordering="false">Jenis Kelamin</th>
                                         <th>Sudah Kuesioner ?</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -121,6 +131,52 @@
     </footer>
 </div>
 <!-- end main content-->
+
+<div class="modal fade" id="exampleModalgrid" tabindex="-1" aria-labelledby="exampleModalgridLabel" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalgridLabel">Tambah Peserta Kuesioner</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form-data">
+                    <div class="row g-3">
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="no_absen" class="form-label">No Absen</label>
+                                <input type="text" class="form-control" id="no_absen">
+                                <input type="hidden" class="form-control" id="batch">
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="nama" class="form-label">Nama</label>
+                                <input type="text" class="form-control" id="nama">
+                                <!-- <input type="text" class="form-control" id="kelas" onkeyup="this.value = this.value.toUpperCase()"> -->
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-xxl-12">
+                            <div>
+                                <label for="jenis_kelamin" class="form-label">Jenis Kelamin</label>
+                                <select name="jenis_kelamin" id="jenis_kelamin" class="form-control">
+                                    <option value="LAKI-LAKI">LAKI-LAKI</option>
+                                    <option value="PEREMPUAN">PEREMPUAN</option>
+                                </select>
+                            </div>
+                        </div><!--end col-->
+                        <div class="col-lg-12">
+                            <div class="hstack gap-2 justify-content-end">
+                                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <?php include('menu_footer.php') ?>
@@ -211,10 +267,127 @@
                         return `<span class="badge bg-success">SUDAH</span> | ` + data.status_kuesioner
                     }
                 }
+            }, {
+                "target": [<?= $target ?>],
+                "className": 'text-center py-1',
+                "data": "data",
+                "render": function(data) {
+                    return `<button type="button" class="btn btn-sm btn-danger" onclick=delete_data('` + data.id + `','` + data.batch + `')><i class="ri-delete-bin-line"></i> Hapus</button>`
+                }
             }, ],
             "dom": '<"row" <"col-md-6" l><"col-md-6" f>>rt<"row" <"col-md-6" i><"col-md-6" p>>',
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         });
 
     });
+
+    function reload_table() {
+        $('#table-kuesioner').DataTable().ajax.reload(null, false);
+    }
+
+    function delete_data(id, batch) {
+
+        Swal.fire({
+            title: 'Apakah Anda Yakin ?',
+            text: "Data yang dihapus tidak bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, hapus saja!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '<?= base_url() ?>sosiometri/delete_data_peserta_kuesioner',
+                    data: {
+                        id: id,
+                        batch: batch,
+                        table: "tbl_siswa_kuesioner"
+                    },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function(result) {
+                        if (result.status == "success") {
+                            Swal.fire(
+                                'Deleted!',
+                                'Data berhasil di hapus.',
+                                'success'
+                            )
+                            reload_table()
+                        } else
+                            toast('error', result.message)
+                    }
+                })
+            }
+        })
+
+
+    }
+
+    $('#btn-tambah').on('click', function() {
+        $('#exampleModalgrid').modal('show');
+        $('#batch').val('<?= $this->uri->segment(3) ?>')
+        $('#kelas').val('<?= $this->uri->segment(4) ?>')
+    })
+
+    $("#form-data").submit(function(e) {
+        // alert('OK')
+        e.preventDefault()
+
+        if ($('#no_absen').val() == '' || $('#nama').val() == '' || $('#jenis_kelamin').val() == '') {
+            Swal.fire(
+                'error!',
+                'Tidak boleh ada kolom kosong!',
+                'error'
+            )
+            return
+        }
+
+
+        var form_data = new FormData();
+        form_data.append('table', 'tbl_siswa_kuesioner');
+        form_data.append('no_absen', $("#no_absen").val());
+        form_data.append('batch', $("#batch").val());
+        form_data.append('nama', $("#nama").val());
+        form_data.append('jenis_kelamin', $("#jenis_kelamin").val());
+
+        var url_ajax = '<?= base_url() ?>sosiometri/insert_data_peserta'
+
+
+        $.ajax({
+            url: url_ajax,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            dataType: "json",
+            success: function(result) {
+                if (result.status == "success") {
+                    Swal.fire(
+                        'Success!',
+                        result.message,
+                        'success'
+                    )
+                    $('#tema').val('')
+                    $('#kelas').val('')
+                    $('#exampleModalgrid').modal('hide');
+                    reload_table()
+                } else {
+                    Swal.fire(
+                        'error!',
+                        result.message,
+                        'error'
+                    )
+                }
+            },
+            error: function(err) {
+                Swal.fire(
+                    'error!',
+                    err.responseText,
+                    'error'
+                )
+            }
+        })
+    })
 </script>

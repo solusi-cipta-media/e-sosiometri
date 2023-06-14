@@ -48,7 +48,7 @@
             <div class="position-relative mx-n4 mt-n4">
                 <div class="profile-wid-bg profile-setting-img">
                     <img src="<?= base_url('assets/default/assets/images/' . $gambar_latar) ?>" class="profile-wid-img" alt="">
-                    <div class="overlay-content">
+                    <!-- <div class="overlay-content">
                         <div class="text-end p-3">
                             <div class="p-0 ms-auto rounded-circle profile-photo-edit">
                                 <input id="profile-foreground-img-file-input" type="file" class="profile-foreground-img-file-input">
@@ -57,7 +57,7 @@
                                 </label>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                    <img src="<?= base_url('assets/default/assets/images/' . $logo_sekolah) ?>" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
+                                    <img src="<?= base_url('assets/default/assets/images/sekolah/' . $logo_sekolah) ?>" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
                                     <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                         <input id="profile-img-file-input" type="file" class="profile-img-file-input">
                                         <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
@@ -94,7 +94,22 @@
                             <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" data-bs-toggle="tab" href="#personalDetails" role="tab">
-                                        <i class="fas fa-home"></i> Informasi Sekolah
+                                        <i class="fas fa-home"></i> Biodata
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#informasiSekolah" role="tab">
+                                        <i class="far fa-user"></i> Informasi Sekolah
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#photoProfil" role="tab">
+                                        <i class="far fa-user"></i> Photo Profil
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-bs-toggle="tab" href="#passwordtab" role="tab">
+                                        <i class="far fa-user"></i> Ubah Password
                                     </a>
                                 </li>
                             </ul>
@@ -106,34 +121,28 @@
                                         <div class="row">
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
-                                                    <label for="nama_usaha" class="form-label">Nama Sekolah</label>
-                                                    <input type="text" class="form-control" id="nama_usaha" name="nama_usaha" value="<?= $sekolah ?>">
+                                                    <label for="name" class="form-label">Nama</label>
+                                                    <input type="text" class="form-control" id="name" name="name" value="<?= $name ?>">
                                                 </div>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
-                                                    <label for="alamat" class="form-label">Alamat</label>
-                                                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $alamat ?>">
+                                                    <label for="nik" class="form-label">Nomor Induk</label>
+                                                    <input type="text" class="form-control" id="nik" name="nik" value="<?= $nik ?>">
                                                 </div>
                                             </div>
                                             <!--end col-->
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
-                                                    <label for="handphone" class="form-label">Provinsi</label>
-                                                    <input type="text" class="form-control" id="handphone" name="handphone" value="<?= $provinsi ?>">
+                                                    <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                                                    <input type="text" class="form-control" id="pekerjaan" name="pekerjaan" value="<?= $pekerjaan ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="mb-3">
-                                                    <label for="slogan" class="form-label">Kota/Kabupaten</label>
-                                                    <input type="text" class="form-control" id="slogan" name="slogan" value="<?= $kota ?>">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-12">
-                                                <div class="mb-3">
-                                                    <label for="telp" class="form-label">Telp</label>
-                                                    <input type="text" class="form-control" id="telp" name="telp" value="<?= $telp_sekolah ?>">
+                                                    <label for="phone" class="form-label">Phone</label>
+                                                    <input type="text" class="form-control" id="phone" name="phone" value="<?= $phone ?>">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12">
@@ -153,7 +162,108 @@
                                         <!--end row-->
                                     </form>
                                 </div>
-
+                                <div class="tab-pane" id="informasiSekolah" role="tabpanel">
+                                    <form id="form-data-2">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="sekolah" class="form-label">Nama Sekolah</label>
+                                                    <input type="text" class="form-control" id="sekolah" name="sekolah" value="<?= $sekolah ?>">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="alamat" class="form-label">Alamat</label>
+                                                    <input type="text" class="form-control" id="alamat" name="alamat" value="<?= $alamat ?>">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="provinsi" class="form-label">Provinsi</label>
+                                                    <input type="text" class="form-control" id="provinsi" name="provinsi" value="<?= $provinsi ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="kota" class="form-label">Kota/Kabupaten</label>
+                                                    <input type="text" class="form-control" id="kota" name="kota" value="<?= $kota ?>">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="telp_sekolah" class="form-label">Telp Sekolah</label>
+                                                    <input type="text" class="form-control" id="telp_sekolah" name="telp_sekolah" value="<?= $telp_sekolah ?>">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-12">
+                                                <div class="hstack gap-2 justify-content-end">
+                                                    <button type="submit" class="btn btn-primary"><i class="ri-upload-cloud-line"></i> Updates</button>
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                        </div>
+                                        <!--end row-->
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="photoProfil" role="tabpanel">
+                                    <form>
+                                        <div class="row g-2">
+                                            <div class="text-center">
+                                                <div class="profile-user position-relative d-inline-block mx-auto  mb-4" id="gb-dark">
+                                                    <img src="<?= base_url('assets/default/assets/images/konselor/' . $photo) ?>" style="max-height: 210px;max-width: auto;" />
+                                                    <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                                                        <input id="profile-img-file-input-dark" type="file" class="profile-img-file-input">
+                                                        <label for="profile-img-file-input-dark" class="profile-photo-edit avatar-xs">
+                                                            <span class="avatar-title rounded-circle bg-light text-body">
+                                                                <i class="ri-camera-fill"></i>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <h5 class="fs-16 mb-1"><?= $name ?></h5>
+                                                <!-- <p class="text-muted mb-0"><?= $slogan ?></p> -->
+                                            </div>
+                                        </div>
+                                        <!--end row-->
+                                    </form>
+                                </div>
+                                <div class="tab-pane" id="passwordtab" role="tabpanel">
+                                    <form id="form-data-3">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="userid" class="form-label">User ID</label>
+                                                    <input type="text" class="form-control" id="userid" name="userid" value="<?= $userid ?>" readonly>
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="password" class="form-label">Password Baru</label>
+                                                    <input type="password" class="form-control" id="password" name="password">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-12">
+                                                <div class="mb-3">
+                                                    <label for="password2" class="form-label">Password Baru Lagi</label>
+                                                    <input type="password" class="form-control" id="password2" name="password2">
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                            <div class="col-lg-12">
+                                                <div class="hstack gap-2 justify-content-end">
+                                                    <button type="submit" class="btn btn-primary"><i class="ri-upload-cloud-line"></i> Updates</button>
+                                                </div>
+                                            </div>
+                                            <!--end col-->
+                                        </div>
+                                        <!--end row-->
+                                    </form>
+                                </div>
 
                                 <!--end tab-pane-->
                             </div>
@@ -225,7 +335,7 @@
     $("#form-data").submit(function(e) {
         e.preventDefault()
 
-        if ($('#nama_usaha').val() == '' || $('#alamat').val() == '' || $('#handphone').val() == '' || $('#slogan').val() == '') {
+        if ($('#name').val() == '' || $('#nik').val() == '' || $('#pekerjaan').val() == '' || $('#phone').val() == '' || $('#email').val() == '') {
             Swal.fire(
                 'error!',
                 'Tidak boleh ada kolom kosong!',
@@ -235,13 +345,134 @@
         }
 
         var form_data = new FormData();
-        form_data.append('table', 'setting_apps');
-        form_data.append('nama_usaha', $("#nama_usaha").val());
-        form_data.append('alamat', $("#alamat").val());
-        form_data.append('handphone', $("#handphone").val());
-        form_data.append('slogan', $("#slogan").val());
+        form_data.append('table', 'user');
+        form_data.append('name', $("#name").val());
+        form_data.append('nik', $("#nik").val());
+        form_data.append('pekerjaan', $("#pekerjaan").val());
+        form_data.append('phone', $("#phone").val());
+        form_data.append('email', $("#email").val());
 
-        var url_ajax = '<?= base_url() ?>dashboard/insert_setting_detil'
+        var url_ajax = '<?= base_url() ?>sosiometri/insert_setting_detil'
+
+
+        $.ajax({
+            url: url_ajax,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            dataType: "json",
+            success: function(result) {
+                if (result.status == "success") {
+                    Swal.fire(
+                        'Success!',
+                        result.message,
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'error!',
+                        result.message,
+                        'error'
+                    )
+                }
+            },
+            error: function(err) {
+                Swal.fire(
+                    'error!',
+                    err.responseText,
+                    'error'
+                )
+            }
+        })
+    })
+
+    $("#form-data-2").submit(function(e) {
+        e.preventDefault()
+
+        if ($('#sekolah').val() == '' || $('#alamat').val() == '' || $('#provinsi').val() == '' || $('#kota').val() == '' || $('#telp_sekolah').val() == '') {
+            Swal.fire(
+                'error!',
+                'Tidak boleh ada kolom kosong!',
+                'error'
+            )
+            return
+        }
+
+        var form_data = new FormData();
+        form_data.append('table', 'user');
+        form_data.append('sekolah', $("#sekolah").val());
+        form_data.append('alamat', $("#alamat").val());
+        form_data.append('provinsi', $("#provinsi").val());
+        form_data.append('kota', $("#kota").val());
+        form_data.append('telp_sekolah', $("#telp_sekolah").val());
+
+        var url_ajax = '<?= base_url() ?>sosiometri/insert_setting_detil'
+
+
+        $.ajax({
+            url: url_ajax,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            dataType: "json",
+            success: function(result) {
+                if (result.status == "success") {
+                    Swal.fire(
+                        'Success!',
+                        result.message,
+                        'success'
+                    )
+                } else {
+                    Swal.fire(
+                        'error!',
+                        result.message,
+                        'error'
+                    )
+                }
+            },
+            error: function(err) {
+                Swal.fire(
+                    'error!',
+                    err.responseText,
+                    'error'
+                )
+            }
+        })
+    })
+
+    $("#form-data-3").submit(function(e) {
+        e.preventDefault()
+
+        var a = $('#password').val();
+        var b = $('#password2').val();
+
+        if ($('#userid').val() == '' || $('#password').val() == '' || $('#password2').val() == '') {
+            Swal.fire(
+                'error!',
+                'Tidak boleh ada kolom kosong!',
+                'error'
+            )
+            return
+        }
+
+        if (a != b) {
+            Swal.fire(
+                'error!',
+                'Password tidak sama!',
+                'error'
+            )
+            return
+        }
+
+        var form_data = new FormData();
+        form_data.append('table', 'user');
+        form_data.append('password', $("#password").val());
+
+        var url_ajax = '<?= base_url() ?>sosiometri/insert_setting_detil_password'
 
 
         $.ajax({
@@ -278,63 +509,18 @@
     })
 
 
-    $('#profile-foreground-img-file-input').on('change', function() {
-
-
-        var form_data = new FormData();
-        form_data.append('table', 'setting_apps');
-        form_data.append('jenis', 'latar');
-        if ($('#profile-foreground-img-file-input').val() !== "") {
-            var file_data = $('#profile-foreground-img-file-input').prop('files')[0];
-            form_data.append('file', file_data);
-        }
-
-
-        url_ajax = '<?= base_url() ?>dashboard/update_setting_gambar'
-
-
-        $.ajax({
-            url: url_ajax,
-            type: "post",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            dataType: "json",
-            success: function(result) {
-                if (result.status == "success") {
-                    console.log('OK')
-                } else {
-                    Swal.fire(
-                        'error!',
-                        result.message,
-                        'error'
-                    )
-                }
-            },
-            error: function(err) {
-                Swal.fire(
-                    'error!',
-                    err.responseText,
-                    'error'
-                )
-            }
-        })
-    });
-
     $('#profile-img-file-input').on('change', function() {
 
 
         var form_data = new FormData();
-        form_data.append('table', 'setting_apps');
-        form_data.append('jenis', 'favicon');
+        form_data.append('table', 'user');
         if ($('#profile-img-file-input').val() !== "") {
             var file_data = $('#profile-img-file-input').prop('files')[0];
             form_data.append('file', file_data);
         }
 
 
-        url_ajax = '<?= base_url() ?>dashboard/update_setting_gambar'
+        url_ajax = '<?= base_url() ?>sosiometri/update_setting_gambar_sekolah'
 
 
         $.ajax({
@@ -348,61 +534,6 @@
             success: function(result) {
                 if (result.status == "success") {
                     console.log('OK')
-                } else {
-                    Swal.fire(
-                        'error!',
-                        result.message,
-                        'error'
-                    )
-                }
-            },
-            error: function(err) {
-                Swal.fire(
-                    'error!',
-                    err.responseText,
-                    'error'
-                )
-            }
-        })
-    });
-
-
-    $('#profile-img-file-input-light').on('change', function() {
-
-
-        var form_data = new FormData();
-        form_data.append('table', 'setting_apps');
-        form_data.append('jenis', 'logo_light');
-        if ($('#profile-img-file-input-light').val() !== "") {
-            var file_data = $('#profile-img-file-input-light').prop('files')[0];
-            form_data.append('file', file_data);
-        }
-
-
-        url_ajax = '<?= base_url() ?>dashboard/update_setting_gambar'
-
-
-        $.ajax({
-            url: url_ajax,
-            type: "post",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            dataType: "json",
-            success: function(result) {
-                if (result.status == "success") {
-                    var html = `<img src="<?= base_url('assets/default/assets/images/') ?>` + result.gambar + `" style="max-height: 210px;max-width: auto;background-color: grey;" />
-                                                    <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                        <input id="profile-img-file-input-light" type="file" class="profile-img-file-input">
-                                                        <label for="profile-img-file-input-light" class="profile-photo-edit avatar-xs">
-                                                            <span class="avatar-title rounded-circle bg-light text-body">
-                                                                <i class="ri-camera-fill"></i>
-                                                            </span>
-                                                        </label>
-                                                    </div>`
-
-                    $('#gb-light').html(html)
                 } else {
                     Swal.fire(
                         'error!',
@@ -426,15 +557,15 @@
 
 
         var form_data = new FormData();
-        form_data.append('table', 'setting_apps');
-        form_data.append('jenis', 'logo_dark');
+        form_data.append('table', 'user');
+        // form_data.append('jenis', 'logo_dark');
         if ($('#profile-img-file-input-dark').val() !== "") {
             var file_data = $('#profile-img-file-input-dark').prop('files')[0];
             form_data.append('file', file_data);
         }
 
 
-        url_ajax = '<?= base_url() ?>dashboard/update_setting_gambar'
+        url_ajax = '<?= base_url() ?>sosiometri/update_setting_gambar_profil'
 
 
         $.ajax({
@@ -447,7 +578,7 @@
             dataType: "json",
             success: function(result) {
                 if (result.status == "success") {
-                    var html2 = `<img src="<?= base_url('assets/default/assets/images/') ?>` + result.gambar + `" style="max-height: 210px;max-width: auto;" />
+                    var html2 = `<img src="<?= base_url('assets/default/assets/images/konselor/') ?>` + result.gambar + `" style="max-height: 210px;max-width: auto;" />
                                                     <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                                         <input id="profile-img-file-input-dark" type="file" class="profile-img-file-input">
                                                         <label for="profile-img-file-input-dark" class="profile-photo-edit avatar-xs">
@@ -458,61 +589,6 @@
                                                     </div>`
 
                     $('#gb-dark').html(html2)
-                } else {
-                    Swal.fire(
-                        'error!',
-                        result.message,
-                        'error'
-                    )
-                }
-            },
-            error: function(err) {
-                Swal.fire(
-                    'error!',
-                    err.responseText,
-                    'error'
-                )
-            }
-        })
-    });
-
-
-    $('#profile-img-file-input-depan').on('change', function() {
-
-
-        var form_data = new FormData();
-        form_data.append('table', 'setting_apps');
-        form_data.append('jenis', 'gambar_depan');
-        if ($('#profile-img-file-input-depan').val() !== "") {
-            var file_data = $('#profile-img-file-input-depan').prop('files')[0];
-            form_data.append('file', file_data);
-        }
-
-
-        url_ajax = '<?= base_url() ?>dashboard/update_setting_gambar'
-
-
-        $.ajax({
-            url: url_ajax,
-            type: "post",
-            cache: false,
-            contentType: false,
-            processData: false,
-            data: form_data,
-            dataType: "json",
-            success: function(result) {
-                if (result.status == "success") {
-                    var html3 = ` <img src="<?= base_url('assets/default/assets/images/') ?>` + result.gambar + `" style="max-height: 210px;max-width: auto;" />
-                                                    <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
-                                                        <input id="profile-img-file-input-depan" type="file" class="profile-img-file-input">
-                                                        <label for="profile-img-file-input-depan" class="profile-photo-edit avatar-xs">
-                                                            <span class="avatar-title rounded-circle bg-light text-body">
-                                                                <i class="ri-camera-fill"></i>
-                                                            </span>
-                                                        </label>
-                                                    </div>`
-
-                    $('#gb-depan').html(html3)
                 } else {
                     Swal.fire(
                         'error!',

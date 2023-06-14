@@ -21,9 +21,6 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        if ($this->session->userdata('role_id') != '1') {;
-            redirect('dashboard/pekerjaan');
-        }
 
         $d = $this->crud->get_all('setting_apps')->row_array();
 
@@ -37,9 +34,9 @@ class Dashboard extends CI_Controller
 
     public function user()
     {
-        if ($this->session->userdata('role_id') != '1') {;
-            redirect('dashboard/pekerjaan');
-        }
+        // if ($this->session->userdata('role_id') != '1') {;
+        //     redirect('dashboard/pekerjaan');
+        // }
 
         $d = $this->crud->get_all('setting_apps')->row_array();
         $data['logo_dark'] = $d['logo_dark'];
