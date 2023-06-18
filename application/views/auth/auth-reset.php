@@ -49,7 +49,7 @@
                                     <img src="<?= base_url('assets/default/assets/images/' . $logo_light) ?>" alt="" height="28">
                                 </a>
                             </div>
-                            <p class="mt-3 fs-15 fw-medium">SI MITRI - Solusi Sosiometri</p>
+                            <p class="mt-3 fs-15 fw-medium">SiMITRI - Solusi Sosiometri</p>
                         </div>
                     </div>
                 </div>
