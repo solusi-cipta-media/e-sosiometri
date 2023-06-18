@@ -89,9 +89,9 @@
                                                 </div>
 
                                                 <div class=" mb-3">
-                                                    <!-- <div class="float-end">
-                                                        <a href="auth-pass-reset-cover.html" class="text-muted">Forgot password?</a>
-                                                    </div> -->
+                                                    <div class="float-end">
+                                                        <a href="<?= base_url('auth/authreset') ?>" class="text-muted">Lupa password?</a>
+                                                    </div>
                                                     <label class="form-label" for="password-input">Password</label>
                                                     <div class="position-relative auth-pass-inputgroup mb-3">
                                                         <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input" name="password">
@@ -138,7 +138,7 @@
                                         </div>
 
                                         <div class="mt-5 text-center">
-                                            <p class="mb-0">Belum memiliki akun ? <a href="auth-signup-cover.html" class="fw-semibold text-primary text-decoration-underline"> Daftar</a> </p>
+                                            <p class="mb-0">Belum memiliki akun ? <a href="<?= base_url('auth/signup') ?>" class="fw-semibold text-primary text-decoration-underline"> Daftar</a> </p>
                                         </div>
                                     </div>
                                 </div>

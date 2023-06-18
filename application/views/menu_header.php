@@ -175,6 +175,11 @@
                                     <i class=" ri-settings-5-line"></i> <span data-key="t-widgets">Aplikasi</span>
                                 </a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link menu-link" href="<?= base_url('sosiometri/smail') ?>">
+                                    <i class="ri-mail-send-line"></i> <span data-key="t-widgets">Email</span>
+                                </a>
+                            </li>
                         <?php } ?>
                         <?php if ($this->session->userdata('role_id') == '1') { ?>
                             <li class="nav-item">

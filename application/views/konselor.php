@@ -193,6 +193,160 @@
     </div>
 </div>
 
+<div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="editmodalLabel" aria-modal="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <!-- <h5 class="modal-title" id="editmodalLabel">Edit Konselor</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="card-header">
+                    <ul class="nav nav-tabs-custom rounded card-header-tabs border-bottom-0" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#personalDetails" role="tab">
+                                <i class="fas fa-home"></i> Biodata
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#informasiSekolah" role="tab">
+                                <i class="far fa-user"></i> Informasi Sekolah
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-bs-toggle="tab" href="#photoProfil" role="tab">
+                                <i class="far fa-user"></i> Photo Profil
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body p-4">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="personalDetails" role="tabpanel">
+                            <form id="form-data-2">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Nama</label>
+                                            <input type="text" class="form-control" id="name_edit" name="name_edit">
+                                            <input type="hidden" class="form-control" id="id_edit" name="id_edit">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="nik" class="form-label">Nomor Induk</label>
+                                            <input type="text" class="form-control" id="nik_edit" name="nik_edit">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="pekerjaan" class="form-label">Pekerjaan</label>
+                                            <input type="text" class="form-control" id="pekerjaan_edit" name="pekerjaan_edit">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            <input type="text" class="form-control" id="phone_edit" name="phone_edit">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="text" class="form-control" id="email_edit" name="email_edit">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <button type="submit" class="btn btn-primary"><i class="ri-upload-cloud-line"></i> Updates</button>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="informasiSekolah" role="tabpanel">
+                            <form id="form-data-3">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="sekolah" class="form-label">Nama Sekolah</label>
+                                            <input type="text" class="form-control" id="sekolah_edit" name="sekolah_edit">
+                                            <input type="hidden" class="form-control" id="id_edit2" name="id_edit2">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="alamat" class="form-label">Alamat</label>
+                                            <input type="text" class="form-control" id="alamat_edit" name="alamat_edit">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="provinsi" class="form-label">Provinsi</label>
+                                            <input type="text" class="form-control" id="provinsi_edit" name="provinsi_edit">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="kota" class="form-label">Kota/Kabupaten</label>
+                                            <input type="text" class="form-control" id="kota_edit" name="kota_edit">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12">
+                                        <div class="mb-3">
+                                            <label for="telp_sekolah" class="form-label">Telp Sekolah</label>
+                                            <input type="text" class="form-control" id="telp_sekolah_edit" name="telp_sekolah_edit">
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                    <div class="col-lg-12">
+                                        <div class="hstack gap-2 justify-content-end">
+                                            <button type="submit" class="btn btn-primary"><i class="ri-upload-cloud-line"></i> Updates</button>
+                                        </div>
+                                    </div>
+                                    <!--end col-->
+                                </div>
+                                <!--end row-->
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="photoProfil" role="tabpanel">
+                            <form>
+                                <div class="row g-2">
+                                    <div class="text-center">
+                                        <div class="profile-user position-relative d-inline-block mx-auto  mb-4" id="gb-dark">
+                                            <img id="photo-konselor" src="<?= base_url('assets/default/assets/images/konselor/aAsa.jpg') ?>" style="max-height: 210px;max-width: auto;" />
+                                            <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
+                                                <input id="id_edit3" type="hidden" class="form-control">
+                                                <input id="profile-konselor" type="file" class="profile-img-file-input">
+                                                <label for="profile-konselor" class="profile-photo-edit avatar-xs">
+                                                    <span class="avatar-title rounded-circle bg-light text-body">
+                                                        <i class="ri-camera-fill"></i>
+                                                    </span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <h5 class="fs-16 mb-1">Photo Profile</h5>
+                                    </div>
+                                </div>
+                                <!--end row-->
+                            </form>
+                        </div>
+
+                        <!--end tab-pane-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-modal="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -266,7 +420,8 @@
 <script src="<?= base_url('assets/default/assets/js/jszip.min.js') ?>"></script>
 
 <script src="<?= base_url('assets/default/assets/js/pages/datatables.init.js') ?>"></script>
-
+<!-- profile-setting init js -->
+<!-- <script src="<?= base_url('assets/default/assets/js/pages/profile-setting.init.js') ?>"></script> -->
 <!-- Sweet Alerts js -->
 <script src="<?= base_url('assets/default/assets/libs/sweetalert2/sweetalert2.min.js') ?>"></script>
 <!-- Sweet alert init js-->
@@ -597,6 +752,128 @@
         })
     })
 
+    $("#form-data-2").submit(function(e) {
+        // alert('OK')
+        e.preventDefault()
+
+        if ($('#name_edit').val() == '' || $('#nik_edit').val() == '' || $('#pekerjaan_edit').val() == '' || $('#phone_edit').val() == '' || $('#email_edit').val() == '') {
+            Swal.fire(
+                'error!',
+                'Tidak boleh ada kolom kosong!',
+                'error'
+            )
+            return
+        }
+
+
+        var form_data = new FormData();
+        form_data.append('table', 'user');
+        form_data.append('id', $("#id_edit").val());
+        form_data.append('name', $("#name_edit").val());
+        form_data.append('nik', $("#nik_edit").val());
+        form_data.append('pekerjaan', $("#pekerjaan_edit").val());
+        form_data.append('phone', $("#phone_edit").val());
+        form_data.append('email', $("#email_edit").val());
+
+        var url_ajax = '<?= base_url() ?>sosiometri/update_konselor'
+
+
+        $.ajax({
+            url: url_ajax,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            dataType: "json",
+            success: function(result) {
+                if (result.status == "success") {
+                    Swal.fire(
+                        'Success!',
+                        result.message,
+                        'success'
+                    )
+                    $('#editmodal').modal('hide');
+                    reload_table()
+                } else {
+                    Swal.fire(
+                        'error!',
+                        result.message,
+                        'error'
+                    )
+                }
+            },
+            error: function(err) {
+                Swal.fire(
+                    'error!',
+                    err.responseText,
+                    'error'
+                )
+            }
+        })
+    })
+
+    $("#form-data-3").submit(function(e) {
+        // alert('OK')
+        e.preventDefault()
+
+        if ($('#sekolah_edit').val() == '' || $('#alamat_edit').val() == '' || $('#provinsi_edit').val() == '' || $('#kota_edit').val() == '' || $('#telp_sekolah_edit').val() == '') {
+            Swal.fire(
+                'error!',
+                'Tidak boleh ada kolom kosong!',
+                'error'
+            )
+            return
+        }
+
+
+        var form_data = new FormData();
+        form_data.append('table', 'user');
+        form_data.append('id', $("#id_edit2").val());
+        form_data.append('sekolah', $("#sekolah_edit").val());
+        form_data.append('alamat', $("#alamat_edit").val());
+        form_data.append('provinsi', $("#provinsi_edit").val());
+        form_data.append('kota', $("#kota_edit").val());
+        form_data.append('telp_sekolah', $("#telp_sekolah_edit").val());
+
+        var url_ajax = '<?= base_url() ?>sosiometri/update_konselor'
+
+
+        $.ajax({
+            url: url_ajax,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            dataType: "json",
+            success: function(result) {
+                if (result.status == "success") {
+                    Swal.fire(
+                        'Success!',
+                        result.message,
+                        'success'
+                    )
+                    $('#editmodal').modal('hide');
+                    reload_table()
+                } else {
+                    Swal.fire(
+                        'error!',
+                        result.message,
+                        'error'
+                    )
+                }
+            },
+            error: function(err) {
+                Swal.fire(
+                    'error!',
+                    err.responseText,
+                    'error'
+                )
+            }
+        })
+    })
+
     function info_konselor(id) {
 
         $.ajax({
@@ -684,4 +961,88 @@
             }
         })
     })
+
+    function edit(id) {
+
+        $('#editmodal').modal('show');
+
+        $.ajax({
+            url: '<?= base_url() ?>sosiometri/getuseriddata',
+            type: "post",
+            async: true,
+            data: {
+                id: id
+            },
+            dataType: "json",
+            success: function(result) {
+                $('#name_edit').val(result.name)
+                $('#nik_edit').val(result.nik)
+                $('#pekerjaan_edit').val(result.pekerjaan)
+                $('#phone_edit').val(result.phone)
+                $('#email_edit').val(result.email)
+                $('#sekolah_edit').val(result.sekolah)
+                $('#alamat_edit').val(result.alamat)
+                $('#provinsi_edit').val(result.provinsi)
+                $('#kota_edit').val(result.kota)
+                $('#telp_sekolah_edit').val(result.telp_sekolah)
+                $('#id_edit').val(result.id)
+                $('#id_edit2').val(result.id)
+                $('#id_edit3').val(result.id)
+                $('#photo-konselor').attr('src', `<?= base_url('assets/default/assets/images/konselor/') ?>` + result.photo)
+
+
+            },
+            error: function(err) {
+                Swal.fire(
+                    'error!',
+                    err.responseText,
+                    'error'
+                )
+            }
+        })
+    }
+
+    $('#profile-konselor').on('change', function() {
+        var form_data = new FormData();
+        form_data.append('table', 'user');
+        form_data.append('id', $('#id_edit3').val());
+        if ($('#profile-konselor').val() !== "") {
+            var file_data = $('#profile-konselor').prop('files')[0];
+            form_data.append('file', file_data);
+        }
+
+
+        url_ajax = '<?= base_url() ?>sosiometri/update_setting_gambar_profil_konselor'
+
+
+        $.ajax({
+            url: url_ajax,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: form_data,
+            dataType: "json",
+            success: function(result) {
+                if (result.status == "success") {
+                    $('#photo-konselor').attr('src', `<?= base_url('assets/default/assets/images/konselor/') ?>` + result.gambar)
+
+                    reload_table()
+                } else {
+                    Swal.fire(
+                        'error!',
+                        result.message,
+                        'error'
+                    )
+                }
+            },
+            error: function(err) {
+                Swal.fire(
+                    'error!',
+                    err.responseText,
+                    'error'
+                )
+            }
+        })
+    });
 </script>

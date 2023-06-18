@@ -44,6 +44,30 @@ class Sosiometri extends CI_Controller
         $this->load->view('konselor', $data);
     }
 
+    public function smail()
+    {
+        $d = $this->crud->get_all('setting_apps')->row_array();
+        $a = $this->crud->get_all('set_email')->row_array();
+
+        $data['logo_dark'] = $d['logo_dark'];
+        $data['logo_light'] = $d['logo_light'];
+        $data['favicon'] = $d['favicon'];
+        $data['nama_usaha'] = $d['nama_usaha'];
+
+        $data['title'] = $d['nama_usaha'] . ' | Setting Email';
+        $data['favicon'] = $d['favicon'];
+
+        $data['host'] = $a['host'];
+        $data['username'] = $a['username'];
+        $data['password'] = $a['password'];
+        $data['secure'] = $a['secure'];
+        $data['port'] = $a['port'];
+        $data['emailfrom'] = $a['emailfrom'];
+        $data['nama_pengirim'] = $a['nama_pengirim'];
+
+        $this->load->view('smail', $data);
+    }
+
     public function aktivitas()
     {
         $d = $this->crud->get_all('setting_apps')->row_array();
@@ -605,6 +629,46 @@ class Sosiometri extends CI_Controller
         echo json_encode($response);
     }
 
+    public function update_setting_gambar_profil_konselor()
+    {
+        $table = $this->input->post("table");
+
+        $config['upload_path']          = "assets/default/assets/images/konselor/";
+        $config['allowed_types']        = 'jpg|png|jpeg|JPG|PNG|JPEG';
+        $config['max_size']             = 1024;
+        $config['max_width']            = 5000;
+        $config['max_height']           = 5000;
+
+        $this->load->library('upload', $config);
+        $data = $this->input->post();
+        unset($data['table']);
+
+        $where = array(
+            'id' => $data['id']
+        );
+        unset($data['id']);
+
+        if (count($_FILES) > 0) {
+            if (!$this->upload->do_upload('file')) {
+                $response = array('status' => 'failed', 'message' => $this->upload->display_errors());
+                echo json_encode($response);
+                die;
+            }
+            $data_upload = $this->upload->data();
+
+            $data['photo'] = $data_upload['file_name'];
+        }
+
+        $update = $this->crud->update($table, $data, $where);
+
+        if ($update > 0) {
+            $response = ['status' => 'success', 'message' => 'Berhasil Edit Data!', 'gambar' => $data_upload['file_name']];
+        } else
+            $response = ['status' => 'error', 'message' => 'Gagal Edit Data!'];
+
+        echo json_encode($response);
+    }
+
     public function insert_setting_detil()
     {
 
@@ -681,6 +745,76 @@ class Sosiometri extends CI_Controller
             $response = ['status' => 'error'];
         } else
             $response = ['status' => 'success'];
+
+        echo json_encode($response);
+    }
+
+    public function getuseriddata()
+    {
+
+        $id = $this->input->post("id");
+
+        $where = array(
+            'id' => $id
+        );
+
+        $response = $this->crud->get_where('user', $where)->row_array();
+
+        echo json_encode($response);
+    }
+
+    public function update_konselor()
+    {
+
+        $table = $this->input->post("table");
+
+        $data = $this->input->post();
+        unset($data['table']);
+
+        $where = array(
+            'id' => $data['id']
+        );
+        unset($data['id']);
+
+
+        $update_data = $this->crud->update($table, $data, $where);
+
+
+        if ($update_data > 0) {
+
+            $response = ['status' => 'success', 'message' => 'Berhasil Update Informasi User!'];
+        } else
+            $response = ['status' => 'error', 'message' => 'Gagal Update Informasi User!'];
+
+        echo json_encode($response);
+    }
+
+    public function update_set_email()
+    {
+
+        $table = $this->input->post("table");
+
+        $data = $this->input->post();
+        unset($data['table']);
+
+        // $password = password_hash($data['password'], PASSWORD_DEFAULT);
+        // unset($data['password']);
+
+        // $data['password'] = $password;
+
+        $where = array(
+            'id' => '1'
+        );
+
+
+        $update_data = $this->crud->update($table, $data, $where);
+
+
+        if ($update_data > 0) {
+
+            $response = ['status' => 'success', 'message' => 'Berhasil Update Email!'];
+        } else
+            $response = ['status' => 'error', 'message' => 'Gagal Update Email!'];
 
         echo json_encode($response);
     }
