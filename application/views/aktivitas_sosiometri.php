@@ -501,6 +501,7 @@
     }
 
     function import_data(batch) {
+        $('#file_excel').val('');
         $('#modalimport').modal('show');
         $('#batch').val(batch)
     }

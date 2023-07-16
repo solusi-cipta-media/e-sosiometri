@@ -31,6 +31,18 @@ class Sosiometri extends CI_Controller
         $this->load->view('dashboard', $data);
     }
 
+    public function analisis()
+    {
+        $d = $this->crud->get_all('setting_apps')->row_array();
+
+        $data['title'] = $d['nama_usaha'] . ' | Laporan Analisis';
+        $data['logo_dark'] = $d['logo_dark'];
+        $data['logo_light'] = $d['logo_light'];
+        $data['favicon'] = $d['favicon'];
+
+        $this->load->view('analisis', $data);
+    }
+
     public function konselor()
     {
         $d = $this->crud->get_all('setting_apps')->row_array();
@@ -205,7 +217,8 @@ class Sosiometri extends CI_Controller
             $row['data']['nama'] = $key->nama;
             $row['data']['kelas'] = $key->kelas;
             $row['data']['jenis_kelamin'] = $key->jenis_kelamin;
-            $row['data']['status_kuesioner'] = date('d-M-Y h:i:s', strtotime($key->status_kuesioner));
+            $row['data']['status_kuesioner'] = $key->status_kuesioner;
+            $row['data']['status_kuesioner_new'] = date('d-M-Y h:i:s', strtotime($key->status_kuesioner));
             $row['data']['batch'] = $key->batch;
             $row['data']['date_created'] = date('d-M-Y', strtotime($key->date_created));
 
@@ -400,7 +413,6 @@ class Sosiometri extends CI_Controller
 
     public function import_excel()
     {
-
         $this->load->library('upload');
         $file_name = uniqid();
         $batch = $this->input->post('batch');
@@ -426,14 +438,12 @@ class Sosiometri extends CI_Controller
         }
 
         $data_upload = $this->upload->data();
-        if ($ext == "xls")
-            $excelreader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-        if ($ext == "xlsx")
-            $excelreader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+        if ($ext == "xls") @$excelreader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+        if ($ext == "xlsx") @$excelreader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 
-        $loadexcel = $excelreader->load('upload/'  . $file_name . '.' . $ext); // Load file yang telah diupload ke folder excel
-        $sheet = $loadexcel->getActiveSheet()->toArray(null, true, true, true);
-
+        @$loadexcel = @$excelreader->load('upload/'  . $file_name . '.' . $ext); // Load file yang telah diupload ke folder excel
+        @$sheet = @$loadexcel->getActiveSheet()->toArray(null, true, true, true);
+        $files = 'upload/'  . $file_name . '.' . $ext;
         //cek apakah data sudah ada di tabel
         $check_db = [];
         $db = $this->crud->get_where_select('tbl_siswa_kuesioner', 'no_absen', ['batch' => $batch])->result_array();
@@ -445,11 +455,30 @@ class Sosiometri extends CI_Controller
 
         // Buat sebuah variabel array untuk menampung array data yg akan kita insert ke database
         $data = array();
+        $abjad = [
+            ['huruf' => 'A', 'val' => 'No Absen'], ['huruf' => 'B', 'val' => 'Nama'],
+            ['huruf' => 'C', 'val' => 'Jenis Kelamin']
+        ];
 
         $numrow = 1;
-        foreach ($sheet as $row) {
+        foreach (@$sheet as $row) {
             if ($numrow > 1) {
+                foreach ($abjad as $abc) {
+                    if ((strlen($row[$abc['huruf']]) > 0 && strlen(trim($row[$abc['huruf']])) == 0)) $row[$abc['huruf']] = '';
+                }
+                if (!$row['A'] && !$row['B'] && !$row['C']) continue;
+
+                foreach ($abjad as $abc) {
+                    if (!isset($row[$abc['huruf']])) {
+                        if (file_exists($files)) unlink($files);
+                        $response = ['status' => 500, 'message' => 'Ada kolom ' . $abc['val'] . ' yang kosong, silahkan cek file upload excel Anda!'];
+                        echo json_encode($response);
+                        die;
+                    }
+                }
+
                 if (in_array($row['A'], $check_double)) {
+                    if (file_exists($files)) unlink($files);
                     $response = array('status' => 'error', 'message' => "NO ABSEN " . $row['A'] . " Double !");
                     echo json_encode($response);
                     die;
@@ -457,12 +486,12 @@ class Sosiometri extends CI_Controller
                 $check_double[] = $row['A'];
                 //cek dengan server
                 if (in_array($row['A'], $check_db)) {
+                    if (file_exists($files)) unlink($files);
                     $response = array('status' => 'error', 'message' => "NO ABSEN " . $row['A'] . " Sudah ada !");
                     echo json_encode($response);
                     die;
                 }
 
-                // if (!in_array($row['B'], array_column($get_nim_id, 'nim'))) {
                 array_push($data, array(
                     'no_absen' => $row['A'],
                     'nama' => $row['B'],
@@ -471,18 +500,17 @@ class Sosiometri extends CI_Controller
                     'batch' => $batch,
                     'sekolah' => $this->session->userdata('sekolah')
                 ));
-                // }
             }
-            $numrow++; // Tambah 1 setiap kali looping
+            $numrow++;
         }
 
-
         if (empty($data)) {
+            if (file_exists($files)) unlink($files);
             $response = ['status' => 'error', 'message' => 'Tidak ada data baru!'];
             echo json_encode($response);
             die;
         }
-
+        if (file_exists($files)) unlink($files);
         $insert_data = $this->db->insert_batch('tbl_siswa_kuesioner', $data);
         if ($insert_data > 0) {
             //hitung jumlah yang sukses upload dan update tbl_sosiometri (jumlah_siswa)

@@ -451,79 +451,82 @@
                 'type': 'post'
             },
             'columns': [{
-                "target": [<?= $target ?>],
-                "className": 'text-center py-1',
-                "data": "data.no",
-            }, {
-                "target": [<?= $target ?>],
-                "className": 'py-1',
-                "data": "data",
-                "render": function(data) {
-                    return `<div class="d-flex gap-2 align-items-center">
-                                                                <div class="flex-shrink-0">
-                                                                    <img src="<?= base_url('assets/default/assets/images/konselor/') ?>` + data.photo + `" alt="" class="avatar-xs rounded-circle">
-                                                                </div>
-                                                                <div class="flex-grow-1">
-                                                                    ` + data.name + `<br><a href="#"><span class="badge text-bg-primary" onclick=info_konselor('` + data.id + `')>detil<i class=" ri-arrow-right-line"></i></span></a>
-                                                                </div>
-                                                            </div>`
-                }
-            }, {
-                "target": [<?= $target ?>],
-                "className": 'text-center py-1',
-                "data": "data",
-                "render": function(data) {
-                    return data.pekerjaan + `<br>` + data.nik
-                }
-            }, {
-                "target": [<?= $target ?>],
-                "className": 'text-center py-1',
-                "data": "data.phone",
-            }, {
-                "target": [<?= $target ?>],
-                "className": 'py-1',
-                "data": "data",
-                "render": function(data) {
-                    return `<div class="d-flex gap-2 align-items-center">
-                                                                <div class="flex-shrink-0">
-                                                                    <img src="<?= base_url('assets/default/assets/images/sekolah/') ?>` + data.logo_sekolah + `" alt="" class="avatar-xs rounded-circle">
-                                                                </div>
-                                                                <div class="flex-grow-1">
-                                                                    <strong>` + data.sekolah + `</strong><br>` + data.alamat + `, ` + data.kota + `<br>` + data.provinsi + `<br>Telp : ` + data.telp_sekolah + `
-                                                                </div>
-                                                            </div>`
-                }
-            }, {
-                "target": [<?= $target ?>],
-                "className": 'text-center py-1',
-                "data": "data",
-                "render": function(data) {
-                    if (data.is_active == '1') {
-                        return `<span class="badge badge-soft-success">Active</span>`
-                    } else {
-                        return `<span class="badge badge-soft-danger">Not Active</span>`
+                    "target": [<?= $target ?>],
+                    "className": 'text-center py-1',
+                    "data": "data.no",
+                }, {
+                    "target": [<?= $target ?>],
+                    "className": 'py-1',
+                    "data": "data",
+                    "render": function(data) {
+                        return `<div class="d-flex gap-2 align-items-center">
+                                <div class="flex-shrink-0">
+                                    <img src="<?= base_url() ?>assets/default/assets/images/${data.photo?'konselor/'+data.photo:'default.jpg'}" alt="" class="avatar-xs rounded-circle">
+                                </div>
+                                <div class="flex-grow-1">
+                                    ` + data.name + `<br><a href="#"><span class="badge text-bg-primary" onclick=info_konselor('` + data.id + `')>detil<i class=" ri-arrow-right-line"></i></span></a>
+                                </div>
+                            </div>`
                     }
-                }
-            }, {
-                "target": [<?= $target ?>],
-                "className": 'text-center py-1',
-                "data": "data",
-                "render": function(data) {
-                    if (data.is_active == '1') {
-                        return `<button type="button" class="btn btn-sm btn-success" onclick=edit('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ri-edit-line"></i></button>
+                }, {
+                    "target": [<?= $target ?>],
+                    "className": 'text-center py-1',
+                    "data": "data",
+                    "render": function(data) {
+                        return data.pekerjaan + `<br>` + data.nik
+                    }
+                }, {
+                    "target": [<?= $target ?>],
+                    "className": 'text-center py-1',
+                    "data": "data.phone",
+                }, {
+                    "target": [<?= $target ?>],
+                    "className": 'py-1',
+                    "data": "data",
+                    "render": function(data) {
+                        return `<div class="d-flex gap-2 align-items-center">
+                                <div class="flex-shrink-0">
+                                    <img src="<?= base_url() ?>assets/default/assets/images/${data.logo_sekolah ? 'sekolah/' + data.logo_sekolah : 'fav-simitri.png'}" alt="" class="avatar-xs rounded-circle">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <strong>${data.sekolah}</strong><br>${data.alamat}${data.kota || data.provinsi?`, `:''}<br>${data.kota} ${data.provinsi}<br>Telp : ${data.telp_sekolah?data.telp_sekolah:'-'}
+                                </div>
+                            </div>`
+                    }
+                },
+                {
+                    "target": [<?= $target ?>],
+                    "className": 'text-center py-1',
+                    "data": "data",
+                    "render": function(data) {
+                        if (data.is_active == '1') {
+                            return `<span class="badge badge-soft-success">Active</span>`
+                        } else {
+                            return `<span class="badge badge-soft-danger">Not Active</span>`
+                        }
+                    }
+                },
+                {
+                    "target": [<?= $target ?>],
+                    "className": 'text-center py-1',
+                    "data": "data",
+                    "render": function(data) {
+                        if (data.is_active == '1') {
+                            return `<button type="button" class="btn btn-sm btn-success" onclick=edit('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ri-edit-line"></i></button>
                         <button type="button" class="btn btn-sm btn-warning" onclick=reset('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Reset Password"><i class="ri-history-line"></i></button>
                         <button type="button" class="btn btn-sm btn-danger" onclick=nonaktif('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Non Aktifkan User"><i class="ri-user-unfollow-fill"></i></button>
                         <button type="button" class="btn btn-sm btn-danger" onclick=delete_data('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="ri-delete-bin-line"></i></button>
                         `
-                    } else {
-                        return `<button type="button" class="btn btn-sm btn-success" onclick=edit('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ri-edit-line"></i></button>
+                        } else {
+                            return `<button type="button" class="btn btn-sm btn-success" onclick=edit('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="ri-edit-line"></i></button>
                         <button type="button" class="btn btn-sm btn-warning" onclick=reset('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Reset Password"><i class="ri-history-line"></i></button>
                         <button type="button" class="btn btn-sm btn-info" onclick=aktif('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Aktifkan User"><i class="ri-user-follow-fill"></i></button>
                         <button type="button" class="btn btn-sm btn-danger" onclick=delete_data('` + data.id + `') data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus"><i class="ri-delete-bin-line"></i></button>
                         `
+                        }
                     }
-                }
-            }, ],
+                },
+            ],
             "dom": '<"row" <"col-md-6" l><"col-md-6" f>>rt<"row" <"col-md-6" i><"col-md-6" p>>',
             "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
         });

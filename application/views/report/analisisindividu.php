@@ -138,12 +138,12 @@
     <div class="page">
         <div class="row">
             <div class="col-2">
-                <img src="<?= base_url('assets/default/assets/images/sekolah/logo.png') ?>" class="img-fluid" alt="logo">
+                <img src="<?= base_url() ?>assets/default/assets/images/<?= $data_konselor['logo_sekolah'] ? 'sekolah/' . $data_konselor['logo_sekolah'] : 'fav-simitri.png' ?>" class="img-fluid" alt="logo">
             </div>
             <div class="col-10">
-                <h4>SLTP N1 MREBET</h4>
-                <p>Jl. Pramuka No. 48 Malang 65154</p>
-                <p>Telp. 0341-556677 Email. info@sltpn1malang.sch.id</p>
+                <h4><?= $data_konselor['sekolah'] ? $data_konselor['sekolah'] : '' ?></h4>
+                <p><?= $data_konselor['alamat'] ? $data_konselor['alamat'] . ($data_konselor['kota'] || $data_konselor['provinsi'] ? ', '  : '') . $data_konselor['kota'] . ' ' . $data_konselor['provinsi'] : '' ?></p>
+                <p>Telp. <?= $data_konselor['phone'] ? $data_konselor['phone'] : '-' ?> Email. <?= $data_konselor['email'] ? $data_konselor['email'] : '-' ?></p>
             </div>
         </div>
         <div class="row">
@@ -173,11 +173,11 @@
                         <p style="font-size: 14px;">Tema Sosiometri</p>
                     </div>
                     <div class="col-9">
-                        <p style="font-size: 14px;">: Agus</p>
-                        <p style="font-size: 14px;">: P001</p>
-                        <p style="font-size: 14px;">: X</p>
-                        <p style="font-size: 14px;">: SLTP N1 Mrebet</p>
-                        <p style="font-size: 14px;">: Siapa yang paling membantu teman di kelas</p>
+                        <p style="font-size: 14px;">: <?= $data_siswa['nama'] ? $data_siswa['nama'] : '-' ?></p>
+                        <p style="font-size: 14px;">: <?= $data_siswa['no_absen'] ? $data_siswa['no_absen'] : '-' ?></p>
+                        <p style="font-size: 14px;">: <?= $data_siswa['kelas'] ? $data_siswa['kelas'] : '-' ?></p>
+                        <p style="font-size: 14px;">: <?= $data_siswa['sekolah'] ? $data_siswa['sekolah'] : '-' ?></p>
+                        <p style="font-size: 14px;">: <?= $data_sosiometri['tema'] ? $data_sosiometri['tema'] : '-' ?></p>
                     </div>
                 </div>
             </div>
@@ -195,9 +195,9 @@
                     </thead>
                     <tbody style="border: 1px solid black;">
                         <tr style="border: 1px solid black;">
-                            <td style="height: 80px;text-align: center;">ARTHUR</td>
-                            <td style="text-align: center;">GILANG</td>
-                            <td style="text-align: center;">RIZAL</td>
+                            <td style="height: 80px;text-align: center;"><?= $hasil['pilihan_1']  ?  strtoupper($hasil['pilihan_1']) : '' ?></td>
+                            <td style="text-align: center;"><?= $hasil['pilihan_2']  ?  strtoupper($hasil['pilihan_2']) : '' ?></td>
+                            <td style="text-align: center;"><?= $hasil['pilihan_3']  ?  strtoupper($hasil['pilihan_3']) : '' ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -213,8 +213,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="height: 80px;border-top: 1px solid black;border-bottom: 1px solid black;text-align: center;font-size: 24px;">60</td>
-                            <td style="border-top: 1px solid black;border-bottom: 1px solid black;text-align: center;font-size: 24px;">3</td>
+                            <td style="height: 80px;border-top: 1px solid black;border-bottom: 1px solid black;text-align: center;font-size: 24px;"><?= $skor?></td>
+                            <td style="border-top: 1px solid black;border-bottom: 1px solid black;text-align: center;font-size: 24px;"><?= $peringkat?></td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -224,18 +224,18 @@
 
         <div class="row mt-3">
             <div class="col-12">
-                <p style="font-size: 14px;">Jumlah teman yang memilih sebagai pilihan (1) : 12</p>
-                <p style="font-size: 14px;">Jumlah teman yang memilih sebagai pilihan (2) : 10</p>
-                <p style="font-size: 14px;">Jumlah teman yang memilih sebagai pilihan (3) : 5</p>
+                <p style="font-size: 14px;">Jumlah teman yang memilih sebagai pilihan (1) : <?= $sum_pil_1 ?></p>
+                <p style="font-size: 14px;">Jumlah teman yang memilih sebagai pilihan (2) : <?= $sum_pil_2 ?></p>
+                <p style="font-size: 14px;">Jumlah teman yang memilih sebagai pilihan (3) : <?= $sum_pil_3 ?></p>
             </div>
         </div>
 
         <div class="row mt-3">
             <div class="col-6"></div>
             <div class="col-6 text-center">
-                <p>Malang, 27-Jul-2023</p>
+                <p>Malang, <?= date('d F Y') ?></p>
                 <p>Konselor</p>
-                <p style="padding-top: 80px;">Agus Salim</p>
+                <p style="padding-top: 80px;"><?= $data_konselor['name'] ? $data_konselor['name'] : '' ?></p>
             </div>
         </div>
 
@@ -244,3 +244,10 @@
 </body>
 
 </html>
+
+<script>
+    window.print();
+    window.onafterprint = function() {
+        window.close();
+    }
+</script>

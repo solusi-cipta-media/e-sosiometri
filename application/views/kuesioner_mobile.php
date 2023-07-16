@@ -46,8 +46,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <img src="<?= base_url('assets/default/assets/images/contoh.png') ?>" style="max-width: 120px;">
-
+                            <img src="<?= base_url() ?>assets/default/assets/images/<?= $logo ? 'sekolah/' . $logo : 'simitri.png' ?>" style="max-width: 120px;">
                             <h2 class="text-white mb-1">Kuesioner E-Sosiometri</h2>
                             <h5 class="text-white mb-3">SMP N1 Malang</h5>
                         </div>
@@ -72,7 +71,7 @@
                                                     <?php
                                                     foreach ($siswa as $key => $value) {
                                                     ?>
-                                                        <option value="<?= $value['no_absen'] . '-' . $value['nama'] ?>"><?= $value['no_absen'] . ' - ' . $value['nama'] ?></option>
+                                                        <option value="<?= $value['no_absen'] . '-' . $value['nama'] . '-' . $value['id'] ?>"><?= $value['no_absen'] . ' - ' . $value['nama'] ?></option>
                                                     <?php
                                                     }
                                                     ?>
@@ -337,7 +336,8 @@
 
                         var html = '<option value="">--Pilih Teman Anda--</option>';
                         result.forEach(d => {
-                            html += '<option value="' + d.no_absen + '-' + d.nama + '">' + d.no_absen + '-' + d.nama + '</option>';
+                            // html += `<option value="${d.id}">${d.no_absen + '-' + d.nama}</option>`;
+                            html += '<option value="' + d.no_absen + '-' + d.nama + '-' + d.id + '">' + d.no_absen + '-' + d.nama + '</option>';
                         });
                         $('#nama1').html(html);
 
@@ -513,7 +513,8 @@
 
                 var html = '<option value="">--Pilih Teman Anda--</option>';
                 result.forEach(d => {
-                    html += '<option value="' + d.no_absen + '-' + d.nama + '">' + d.no_absen + '-' + d.nama + '</option>';
+                    // html += `<option value="${d.id}">${d.no_absen + '-' + d.nama}</option>`;
+                    html += '<option value="' + d.no_absen + '-' + d.nama + '-' + d.id + '">' + d.no_absen + '-' + d.nama + '</option>';
                 });
                 $('#nama2').html(html);
 
@@ -541,7 +542,8 @@
 
                 var html = '<option value="">--Pilih Teman Anda--</option>';
                 result.forEach(d => {
-                    html += '<option value="' + d.no_absen + '-' + d.nama + '">' + d.no_absen + '-' + d.nama + '</option>';
+                    // html += `<option value="${d.id}">${d.no_absen + '-' + d.nama}</option>`;
+                    html += '<option value="' + d.no_absen + '-' + d.nama + '-' + d.id + '">' + d.no_absen + '-' + d.nama + '</option>';
                 });
                 $('#nama3').html(html);
 

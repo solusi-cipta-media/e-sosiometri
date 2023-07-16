@@ -31,6 +31,7 @@ class Kuesioner extends CI_Controller
         );
         $data['siswa'] = $this->crud->get_where('tbl_siswa_kuesioner', $where)->result_array();
         $data['d'] = $this->crud->get_where('tbl_sosiometri', $where)->row_array();
+        $data['logo'] = $this->crud->get_where('user', ['id' => $data['d']['id_konselor']])->row_array()['logo_sekolah'] ?? '';
 
         if (count($data['siswa']) == 0) {
             redirect(base_url('Error404'));
@@ -73,12 +74,16 @@ class Kuesioner extends CI_Controller
         //explode kode prodi dan perguruan tinggi
         $y = explode('-', $aa);
         $nama = trim($y[1]);
+        $id_konseli = trim($y[2]);
         $y1 = explode('-', $aa1);
-        $nama1 = trim($y1[1]);
+        $nama1 = trim($y1[2]);
         $y2 = explode('-', $aa2);
-        $nama2 = trim($y2[1]);
+        $nama2 = trim($y2[2]);
         $y3 = explode('-', $aa3);
-        $nama3 = trim($y3[1]);
+        $nama3 = trim($y3[2]);
+        // $id_nama_siswa_1 = $aa1;
+        // $id_nama_siswa_2 = $aa2;
+        // $id_nama_siswa_3 = $aa3;
 
         //siapkan datanya
         $where = array(
@@ -90,6 +95,7 @@ class Kuesioner extends CI_Controller
             'konselor' => $getkons["nama_konselor"],
             'sekolah' => $sekolah,
             'kelas' => $kelas,
+            'id_konseli' => $id_konseli,
             'konseli' => $nama,
             'no_absen' => $no_absen,
             'pilihan1' => $nama1,
@@ -101,6 +107,7 @@ class Kuesioner extends CI_Controller
             'batch' => $batch,
         );
 
+        $this->Crud->update('tbl_siswa_kuesioner', ['status_kuesioner' => date('Y-m-d H:i:s')], ['no_absen' => $no_absen]);
         $this->Crud->insert('tbl_hasil_kuesioner', $data);
 
         if ($this->db->affected_rows() == true) {
@@ -144,7 +151,7 @@ class Kuesioner extends CI_Controller
             'batch' => $batch
         );
 
-        $select = 'no_absen, nama';
+        $select = 'id,no_absen, nama';
 
         $notin = array(
             $nama1
@@ -171,7 +178,7 @@ class Kuesioner extends CI_Controller
             'batch' => $batch
         );
 
-        $select = 'no_absen, nama';
+        $select = 'id,no_absen, nama';
 
         $notin = array(
             $a[0],
@@ -201,7 +208,7 @@ class Kuesioner extends CI_Controller
             'batch' => $batch
         );
 
-        $select = 'no_absen, nama';
+        $select = 'id,no_absen, nama';
 
         $notin = array(
             $a[0],
