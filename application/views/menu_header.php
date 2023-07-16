@@ -140,13 +140,13 @@
                     <div id="two-column-menu">
                     </div>
                     <ul class="navbar-nav" id="navbar-nav">
-                        <?php if ($this->session->userdata('role_id') == '1') { ?>
+                        <!-- <?php if ($this->session->userdata('role_id') == '1') { ?>
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?= base_url('dashboard') ?>">
                                     <i class="ri-home-4-line"></i> <span data-key="t-widgets">Dashboard</span>
                                 </a>
                             </li>
-                        <?php } ?>
+                        <?php } ?> -->
                         <?php if ($this->session->userdata('role_id') == '2') { ?>
                             <li class="menu-title"><span data-key="t-menu">Master</span></li>
                             <li class="nav-item">
@@ -170,11 +170,11 @@
                         </li>
                         <li class="menu-title"><span data-key="t-menu">Setting</span></li>
                         <?php if ($this->session->userdata('role_id') == '2') { ?>
-                            <li class="nav-item">
+                            <!-- <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?= base_url('dashboard/aplikasi') ?>">
                                     <i class=" ri-settings-5-line"></i> <span data-key="t-widgets">Aplikasi</span>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item">
                                 <a class="nav-link menu-link" href="<?= base_url('sosiometri/smail') ?>">
                                     <i class="ri-mail-send-line"></i> <span data-key="t-widgets">Email</span>
