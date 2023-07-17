@@ -261,10 +261,10 @@
                 "className": 'text-center py-1',
                 "data": "data",
                 "render": function(data) {
-                    if (data.status_kuesioner == '30-Nov--0001 12:00:00') {
+                    if (data.status_kuesioner == '0000-00-00 00:00:00') {
                         return `<span class="badge bg-danger">BELUM</span>`
                     } else {
-                        return `<span class="badge bg-success">SUDAH</span> | ` + data.status_kuesioner
+                        return `<span class="badge bg-success">SUDAH</span> | ` + data.status_kuesioner_new
                     }
                 }
             }, {

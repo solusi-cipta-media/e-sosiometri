@@ -133,9 +133,9 @@
                 <img src="<?= base_url('assets/default/assets/images/sekolah/logo.png') ?>" class="img-fluid" alt="logo">
             </div>
             <div class="col-10">
-                <h4>SLTP N1 MREBET</h4>
-                <p>Jl. Pramuka No. 48 Malang 65154</p>
-                <p>Telp. 0341-556677 Email. info@sltpn1malang.sch.id</p>
+                <h4><?= $data_konselor['sekolah'] ? $data_konselor['sekolah'] : '' ?></h4>
+                <p><?= $data_konselor['alamat'] ? $data_konselor['alamat'] . ($data_konselor['kota'] || $data_konselor['provinsi'] ? ', '  : '') . $data_konselor['kota'] . ' ' . $data_konselor['provinsi'] : '' ?></p>
+                <p>Telp. <?= $data_konselor['phone'] ? $data_konselor['phone'] : '-' ?> Email. <?= $data_konselor['email'] ? $data_konselor['email'] : '-' ?></p>
             </div>
         </div>
         <div class="row">
@@ -163,9 +163,9 @@
                         <p style="font-size: 14px;">Tema Sosiometri</p>
                     </div>
                     <div class="col-9">
-                        <p style="font-size: 14px;">: X</p>
-                        <p style="font-size: 14px;">: 30</p>
-                        <p style="font-size: 14px;">: Siapa yang paling membantu teman di kelas</p>
+                        <p style="font-size: 14px;">: <?= $data_sosiometri['kelas'] ?></p>
+                        <p style="font-size: 14px;">: <?= $data_sosiometri['jumlah_siswa'] ?></p>
+                        <p style="font-size: 14px;">: <?= $data_sosiometri['tema'] ?></p>
                     </div>
                 </div>
             </div>
@@ -194,17 +194,18 @@
                     </thead>
                     <tbody>
                         <?php
-                        for ($i = 1; $i < 40; $i++) {
+                        // for ($i = 1; $i < 40; $i++) {
+                        foreach ($sum_table_all as $dta) {
                         ?>
                             <tr>
-                                <td style="border-top: 1px solid black;"><?= $i ?></td>
-                                <td style="border-top: 1px solid black;">Agus</td>
-                                <td style="border-top: 1px solid black;">Laki-laki</td>
-                                <td style="border-top: 1px solid black;">Rizal</td>
-                                <td style="border-top: 1px solid black;">Gilang</td>
-                                <td style="border-top: 1px solid black;">Arthur</td>
-                                <td style="border-top: 1px solid black;">50</td>
-                                <td style="border-top: 1px solid black;">3</td>
+                                <td style="border-top: 1px solid black;"><?= $dta['no_absen'] ?></td>
+                                <td style="border-top: 1px solid black;"><?= $dta['nama_siswa'] ?></td>
+                                <td style="border-top: 1px solid black;"><?= $dta['jenis_kelamin'] ?></td>
+                                <td style="border-top: 1px solid black;"><?= $dta['pilihan_1'] ?></td>
+                                <td style="border-top: 1px solid black;"><?= $dta['pilihan_2'] ?></td>
+                                <td style="border-top: 1px solid black;"><?= $dta['pilihan_3'] ?></td>
+                                <td style="border-top: 1px solid black;"><?= $dta['skor'] ?></td>
+                                <td style="border-top: 1px solid black;"><?= $dta['peringkat'] ?></td>
                             </tr>
                         <?php
                         }
@@ -268,9 +269,9 @@
         <div class="row mt-3">
             <div class="col-6"></div>
             <div class="col-6 text-center">
-                <p>Malang, 27-Jul-2023</p>
+                <p>Malang, <?= date('d F Y') ?></p>
                 <p>Konselor</p>
-                <p style="padding-top: 80px;">Agus Salim</p>
+                <p style="padding-top: 80px;"><?= $data_konselor['name'] ? $data_konselor['name'] : '' ?></p>
             </div>
         </div>
 
@@ -279,3 +280,10 @@
 </body>
 
 </html>
+
+<script>
+    window.print();
+    window.onafterprint = function() {
+        window.close();
+    }
+</script>
