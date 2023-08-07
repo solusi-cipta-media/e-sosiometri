@@ -103,6 +103,8 @@
         font-weight: normal;
     }
 
+    table,
+    tr,
     th,
     td {
         font-size: 12px;
@@ -188,13 +190,13 @@
         <div class="row mt-3">
             <div class="col-8">
                 <table style="width: 100%;">
-                    <thead style="border: 1px solid black;text-align: center;">
+                    <thead style="border: 1.5px solid black;text-align: center;">
                         <th style="width: 30%;">PILIHAN (1)</th>
                         <th style="width: 30%;">PILIHAN (2)</th>
                         <th style="width: 30%;">PILIHAN (3)</th>
                     </thead>
-                    <tbody style="border: 1px solid black;">
-                        <tr style="border: 1px solid black;">
+                    <tbody style="border: 1.5px solid black;">
+                        <tr style="border: 1.5px solid black;">
                             <td style="height: 80px;text-align: center;"><?= $hasil['pilihan_1']  ?  strtoupper($hasil['pilihan_1']) : '' ?></td>
                             <td style="text-align: center;"><?= $hasil['pilihan_2']  ?  strtoupper($hasil['pilihan_2']) : '' ?></td>
                             <td style="text-align: center;"><?= $hasil['pilihan_3']  ?  strtoupper($hasil['pilihan_3']) : '' ?></td>
@@ -207,14 +209,14 @@
             <div class="col-8">
                 <table>
                     <thead>
-                        <th style="width: 30%;border-top: 1px solid black;">SKOR SOSIOMETRI</th>
-                        <th style="width: 30%;border-top: 1px solid black;">PERINGKAT KELOMPOK</th>
+                        <th style="width: 30%;border-top: 1.5px solid black;">SKOR SOSIOMETRI</th>
+                        <th style="width: 30%;border-top: 1.5px solid black;">PERINGKAT KELOMPOK</th>
                         <th style="width: 30%;"></th>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="height: 80px;border-top: 1px solid black;border-bottom: 1px solid black;text-align: center;font-size: 24px;"><?= $skor?></td>
-                            <td style="border-top: 1px solid black;border-bottom: 1px solid black;text-align: center;font-size: 24px;"><?= $peringkat?></td>
+                            <td style="height: 80px;border-top: 1.5px solid black;border-bottom: 1.5px solid black;text-align: center;font-size: 24px;"><?= $skor ?></td>
+                            <td style="border-top: 1.5px solid black;border-bottom: 1.5px solid black;text-align: center;font-size: 24px;"><?= $peringkat ?></td>
                             <td></td>
                         </tr>
                     </tbody>

@@ -162,4 +162,18 @@ class Crud2 extends CI_Model
         $this->db->where($where);
         return $this->db->count_all_results();
     }
+
+    public function select_join_where(string $select, string $table, array $join, array $where, $get = null)
+    {
+        $this->db->select($select);
+        $this->db->from($table);
+        foreach ($join as $key => $value) {
+            $this->db->join($value[0], $value[1], isset($value[2]) ? $value[2] : "left");
+        }
+
+        foreach ($where as $key => $value) {
+            $this->db->where($value);
+        }
+        if ($get) return $this->db->get();
+    }
 }
