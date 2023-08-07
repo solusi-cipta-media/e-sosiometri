@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 16 Jul 2023 pada 12.34
--- Versi server: 10.4.20-MariaDB
--- Versi PHP: 8.0.9
+-- Generation Time: Jul 23, 2023 at 05:54 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `ci_sessions`
+-- Table structure for table `ci_sessions`
 --
 
 CREATE TABLE `ci_sessions` (
@@ -35,7 +35,7 @@ CREATE TABLE `ci_sessions` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `ci_sessions`
+-- Dumping data for table `ci_sessions`
 --
 
 INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
@@ -70,7 +70,7 @@ INSERT INTO `ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `reg_email`
+-- Table structure for table `reg_email`
 --
 
 CREATE TABLE `reg_email` (
@@ -82,7 +82,7 @@ CREATE TABLE `reg_email` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `reg_email`
+-- Dumping data for table `reg_email`
 --
 
 INSERT INTO `reg_email` (`id`, `email`, `uniq`, `aktivitas`, `date_created`) VALUES
@@ -104,7 +104,7 @@ INSERT INTO `reg_email` (`id`, `email`, `uniq`, `aktivitas`, `date_created`) VAL
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `setting_apps`
+-- Table structure for table `setting_apps`
 --
 
 CREATE TABLE `setting_apps` (
@@ -122,7 +122,7 @@ CREATE TABLE `setting_apps` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `setting_apps`
+-- Dumping data for table `setting_apps`
 --
 
 INSERT INTO `setting_apps` (`id`, `nama_usaha`, `logo_dark`, `logo_light`, `favicon`, `slogan`, `gambar_depan`, `gambar_latar`, `alamat`, `handphone`, `date_created`) VALUES
@@ -131,7 +131,7 @@ INSERT INTO `setting_apps` (`id`, `nama_usaha`, `logo_dark`, `logo_light`, `favi
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `set_email`
+-- Table structure for table `set_email`
 --
 
 CREATE TABLE `set_email` (
@@ -146,7 +146,7 @@ CREATE TABLE `set_email` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `set_email`
+-- Dumping data for table `set_email`
 --
 
 INSERT INTO `set_email` (`id`, `host`, `username`, `password`, `secure`, `port`, `emailfrom`, `nama_pengirim`) VALUES
@@ -155,7 +155,7 @@ INSERT INTO `set_email` (`id`, `host`, `username`, `password`, `secure`, `port`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_hasil_kuesioner`
+-- Table structure for table `tbl_hasil_kuesioner`
 --
 
 CREATE TABLE `tbl_hasil_kuesioner` (
@@ -178,7 +178,7 @@ CREATE TABLE `tbl_hasil_kuesioner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbl_hasil_kuesioner`
+-- Dumping data for table `tbl_hasil_kuesioner`
 --
 
 INSERT INTO `tbl_hasil_kuesioner` (`id`, `id_konselor`, `konselor`, `sekolah`, `kelas`, `id_konseli`, `konseli`, `no_absen`, `pilihan1`, `alasan1`, `pilihan2`, `alasan2`, `pilihan3`, `alasan3`, `batch`, `date_created`) VALUES
@@ -187,12 +187,14 @@ INSERT INTO `tbl_hasil_kuesioner` (`id`, `id_konselor`, `konselor`, `sekolah`, `
 (3, 7, 'Konselor', 'SMP N1 Malang', 'X', '83', 'Malud', '11', '85', 'ada', '84', 'ada', '82', 'ada', '64b34a5f91aec', '2023-07-16 03:42:51'),
 (4, 7, 'Konselor', 'SMP N1 Malang', 'X', '82', 'Lilis', '10', '84', 'aa', '80', 'ss', '85', 'ff', '64b34a5f91aec', '2023-07-16 07:34:12'),
 (5, 7, 'Konselor', 'SMP N1 Malang', 'X', '80', 'Andhi', '8', '81', 'sdas', '84', 'dad', '82', 'asa', '64b34a5f91aec', '2023-07-16 07:57:50'),
-(14, 7, 'Konselor', 'SMP N1 Malang', 'X', '81', 'Putri', '9', '80', 'a', '84', 'a', '85', 'aa', '64b34a5f91aec', '2023-07-16 09:16:48');
+(14, 7, 'Konselor', 'SMP N1 Malang', 'X', '81', 'Putri', '9', '80', 'a', '84', 'a', '85', 'aa', '64b34a5f91aec', '2023-07-16 09:16:48'),
+(15, 7, 'Konselor', 'SMP N1 Malang', 'X', '86', 'Ana', '9', '83', 'a', '84', 'a', '85', 'aa', '64b34a5f91aec', '2023-07-16 09:16:48'),
+(16, 7, 'Konselor', 'SMP N1 Malang', 'X', '87', 'Ani', '9', '82', 'a', '80', 'a', '85', 'aa', '64b34a5f91aec', '2023-07-16 09:16:48');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_siswa_kuesioner`
+-- Table structure for table `tbl_siswa_kuesioner`
 --
 
 CREATE TABLE `tbl_siswa_kuesioner` (
@@ -208,7 +210,7 @@ CREATE TABLE `tbl_siswa_kuesioner` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbl_siswa_kuesioner`
+-- Dumping data for table `tbl_siswa_kuesioner`
 --
 
 INSERT INTO `tbl_siswa_kuesioner` (`id`, `no_absen`, `nama`, `kelas`, `sekolah`, `jenis_kelamin`, `status_kuesioner`, `batch`, `date_created`) VALUES
@@ -218,11 +220,11 @@ INSERT INTO `tbl_siswa_kuesioner` (`id`, `no_absen`, `nama`, `kelas`, `sekolah`,
 (83, '11', 'Malud', 'X', 'SMP N1 Malang', 'LAKI-LAKI', '2023-07-16 05:42:51', '64b34a5f91aec', '2023-07-16 01:40:51'),
 (84, '12', 'Arthur', 'X', 'SMP N1 Malang', 'LAKI-LAKI', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 01:40:51'),
 (85, '13', 'Agus', 'X', 'SMP N1 Malang', 'LAKI-LAKI', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 01:40:51'),
-(86, '1', 'ada', 'X', 'SMP N1 Malang', 'ada', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:36:06'),
-(87, '2', 'asa1', 'X', 'SMP N1 Malang', 'aa', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:36:06'),
-(88, '3', 'asa2', 'X', 'SMP N1 Malang', 'x', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:36:06'),
-(89, '4', 'xcc', 'X', 'SMP N1 Malang', 'xx', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:36:06'),
-(90, '66', 'asa3', 'X', 'SMP N1 Malang', 'asa', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:42:38'),
+(86, '1', 'Ana', 'X', 'SMP N1 Malang', 'PEREMPUAN', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:36:06'),
+(87, '2', 'Ani', 'X', 'SMP N1 Malang', 'PEREMPUAN', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:36:06'),
+(88, '3', 'Alfi', 'X', 'SMP N1 Malang', 'PEREMPUAN', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:36:06'),
+(89, '4', 'Nur', 'X', 'SMP N1 Malang', 'PEREMPUAN', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:36:06'),
+(90, '66', 'Kha', 'X', 'SMP N1 Malang', 'PEREMPUAN', '0000-00-00 00:00:00', '64b34a5f91aec', '2023-07-16 04:42:38'),
 (97, '1', 'Andhi', 'X', 'SMP N1 Malang', 'LAKI-LAKI', '0000-00-00 00:00:00', '64b3907559ecf', '2023-07-16 06:41:40'),
 (98, '2', 'Putri', 'X', 'SMP N1 Malang', 'PEREMPUAN', '0000-00-00 00:00:00', '64b3907559ecf', '2023-07-16 06:41:40'),
 (99, '3', 'Lilis', 'X', 'SMP N1 Malang', 'PEREMPUAN', '0000-00-00 00:00:00', '64b3907559ecf', '2023-07-16 06:41:40'),
@@ -233,7 +235,7 @@ INSERT INTO `tbl_siswa_kuesioner` (`id`, `no_absen`, `nama`, `kelas`, `sekolah`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_sosiometri`
+-- Table structure for table `tbl_sosiometri`
 --
 
 CREATE TABLE `tbl_sosiometri` (
@@ -250,7 +252,7 @@ CREATE TABLE `tbl_sosiometri` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `tbl_sosiometri`
+-- Dumping data for table `tbl_sosiometri`
 --
 
 INSERT INTO `tbl_sosiometri` (`id`, `id_konselor`, `nama_konselor`, `sekolah`, `tema`, `kelas`, `jumlah_siswa`, `link`, `batch`, `date_created`) VALUES
@@ -262,7 +264,7 @@ INSERT INTO `tbl_sosiometri` (`id`, `id_konselor`, `nama_konselor`, `sekolah`, `
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tbl_sosiometri_detil`
+-- Table structure for table `tbl_sosiometri_detil`
 --
 
 CREATE TABLE `tbl_sosiometri_detil` (
@@ -279,7 +281,7 @@ CREATE TABLE `tbl_sosiometri_detil` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -304,7 +306,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id`, `name`, `nik`, `pekerjaan`, `userid`, `password`, `phone`, `photo`, `sekolah`, `alamat`, `kota`, `provinsi`, `telp_sekolah`, `email`, `logo_sekolah`, `is_active`, `role_id`, `date_created`) VALUES
@@ -316,7 +318,7 @@ INSERT INTO `user` (`id`, `name`, `nik`, `pekerjaan`, `userid`, `password`, `pho
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_role`
+-- Table structure for table `user_role`
 --
 
 CREATE TABLE `user_role` (
@@ -325,7 +327,7 @@ CREATE TABLE `user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `user_role`
+-- Dumping data for table `user_role`
 --
 
 INSERT INTO `user_role` (`id`, `role`) VALUES
@@ -337,121 +339,121 @@ INSERT INTO `user_role` (`id`, `role`) VALUES
 --
 
 --
--- Indeks untuk tabel `ci_sessions`
+-- Indexes for table `ci_sessions`
 --
 ALTER TABLE `ci_sessions`
   ADD PRIMARY KEY (`id`),
   ADD KEY `ci_sessions_timestamp` (`timestamp`);
 
 --
--- Indeks untuk tabel `reg_email`
+-- Indexes for table `reg_email`
 --
 ALTER TABLE `reg_email`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `setting_apps`
+-- Indexes for table `setting_apps`
 --
 ALTER TABLE `setting_apps`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `set_email`
+-- Indexes for table `set_email`
 --
 ALTER TABLE `set_email`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbl_hasil_kuesioner`
+-- Indexes for table `tbl_hasil_kuesioner`
 --
 ALTER TABLE `tbl_hasil_kuesioner`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbl_siswa_kuesioner`
+-- Indexes for table `tbl_siswa_kuesioner`
 --
 ALTER TABLE `tbl_siswa_kuesioner`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbl_sosiometri`
+-- Indexes for table `tbl_sosiometri`
 --
 ALTER TABLE `tbl_sosiometri`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `tbl_sosiometri_detil`
+-- Indexes for table `tbl_sosiometri_detil`
 --
 ALTER TABLE `tbl_sosiometri_detil`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `userid` (`userid`) USING BTREE;
 
 --
--- Indeks untuk tabel `user_role`
+-- Indexes for table `user_role`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `reg_email`
+-- AUTO_INCREMENT for table `reg_email`
 --
 ALTER TABLE `reg_email`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `setting_apps`
+-- AUTO_INCREMENT for table `setting_apps`
 --
 ALTER TABLE `setting_apps`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `set_email`
+-- AUTO_INCREMENT for table `set_email`
 --
 ALTER TABLE `set_email`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_hasil_kuesioner`
+-- AUTO_INCREMENT for table `tbl_hasil_kuesioner`
 --
 ALTER TABLE `tbl_hasil_kuesioner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_siswa_kuesioner`
+-- AUTO_INCREMENT for table `tbl_siswa_kuesioner`
 --
 ALTER TABLE `tbl_siswa_kuesioner`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=103;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_sosiometri`
+-- AUTO_INCREMENT for table `tbl_sosiometri`
 --
 ALTER TABLE `tbl_sosiometri`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- AUTO_INCREMENT untuk tabel `tbl_sosiometri_detil`
+-- AUTO_INCREMENT for table `tbl_sosiometri_detil`
 --
 ALTER TABLE `tbl_sosiometri_detil`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT untuk tabel `user_role`
+-- AUTO_INCREMENT for table `user_role`
 --
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
