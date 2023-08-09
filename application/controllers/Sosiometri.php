@@ -426,13 +426,9 @@ class Sosiometri extends CI_Controller
         $config['overwrite']            = true;
         $config['file_name']            = $file_name;
 
-        // echo "<pre>";
-        // var_dump($_FILES['file_excel']);
-        // echo "</pre>";
-        // die;
         $this->upload->initialize($config); // Load konfigurasi uploadnya
         if (!$this->upload->do_upload('file_excel')) {
-            $response = array('status' => 'failed', 'message' => $this->upload->display_errors());
+            $response = array('status' => 500, 'message' => $this->upload->display_errors());
             echo json_encode($response);
             die;
         }
@@ -471,7 +467,7 @@ class Sosiometri extends CI_Controller
                 foreach ($abjad as $abc) {
                     if (!isset($row[$abc['huruf']])) {
                         if (file_exists($files)) unlink($files);
-                        $response = ['status' => 500, 'message' => 'Ada kolom ' . $abc['val'] . ' yang kosong, silahkan cek file upload excel Anda!'];
+                        $response = ['status' => 501, 'message' => 'Ada kolom ' . $abc['val'] . ' yang kosong, silahkan cek file upload excel Anda!'];
                         echo json_encode($response);
                         die;
                     }
@@ -479,7 +475,7 @@ class Sosiometri extends CI_Controller
 
                 if (in_array($row['A'], $check_double)) {
                     if (file_exists($files)) unlink($files);
-                    $response = array('status' => 'error', 'message' => "NO ABSEN " . $row['A'] . " Double !");
+                    $response = array('status' => 502, 'message' => "NO ABSEN " . $row['A'] . " Double!");
                     echo json_encode($response);
                     die;
                 }
@@ -487,7 +483,7 @@ class Sosiometri extends CI_Controller
                 //cek dengan server
                 if (in_array($row['A'], $check_db)) {
                     if (file_exists($files)) unlink($files);
-                    $response = array('status' => 'error', 'message' => "NO ABSEN " . $row['A'] . " Sudah ada !");
+                    $response = array('status' => 503, 'message' => "NO ABSEN " . $row['A'] . " Sudah ada!");
                     echo json_encode($response);
                     die;
                 }
@@ -506,7 +502,7 @@ class Sosiometri extends CI_Controller
 
         if (empty($data)) {
             if (file_exists($files)) unlink($files);
-            $response = ['status' => 'error', 'message' => 'Tidak ada data baru!'];
+            $response = ['status' => 504, 'message' => 'Tidak ada data baru!'];
             echo json_encode($response);
             die;
         }
@@ -517,9 +513,9 @@ class Sosiometri extends CI_Controller
             $r = $this->crud->count_where('tbl_siswa_kuesioner', ['batch' => $batch]);
             $this->crud->update('tbl_sosiometri', ['jumlah_siswa' => $r], ['batch' => $batch]);
 
-            $response = ['status' => 'success', 'message' => 'Data Berhasil Diupload!'];
+            $response = ['status' => 200, 'message' => 'Data Berhasil Diupload!'];
         } else
-            $response = ['status' => 'error', 'message' => 'Data Gagal Diupload!'];
+            $response = ['status' => 505, 'message' => 'Data Gagal Diupload!'];
 
         echo json_encode($response);
     }

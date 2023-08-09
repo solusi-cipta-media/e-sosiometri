@@ -377,16 +377,19 @@
         })
     })
 
+    function clear_form_import() {
+        $('#modalimport').find('input').val('')
+    }
     $("#form_upload_excel").submit(function(e) {
         e.preventDefault()
-        if ($('#file_excel').val() == "") {
+        if (!$('#file_excel').val()) {
             $('#modalimport').modal('hide');
             Swal.fire(
                 "Oops!",
                 "File belum dipilih",
                 "warning"
             )
-            return
+            return;
         }
 
         process_submit()
@@ -406,7 +409,7 @@
             data: form_data,
             type: 'post',
             success: function(result) {
-                if (result.status == "success") {
+                if (result.status == 200) {
                     Swal.fire({
                         position: 'top-end',
                         icon: 'success',
@@ -414,31 +417,82 @@
                         showConfirmButton: false,
                         timer: 1500
                     })
-                    // toast_confirm('success', result.message)
+                    clear_form_import()
                     $('#modalimport').modal("hide");
-
                     reload_table()
-                } else {
-                    // default_submit()
+                } else
                     Swal.fire(
                         "Oops!",
-                        result.message,
+                        'oke  ' + result.message,
                         "warning"
                     )
-                    // toast_confirm('error', result.message)
-                }
             },
             error: function(err) {
-                // default_submit()
-                Swal.fire(
-                    "Oops!",
-                    err.responseText,
-                    "warning"
-                )
-                // toast_confirm('error', err.responseText)
+                var get_error = err.responseText
+                if (get_error.indexOf('200') >= 0) {
+                    clear_form_import()
+                    $('#modalimport').modal("hide");
+                    reload_table()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Berhasil Import Data User',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    return;
+                }
+                if (get_error.indexOf('500') >= 0) {
+                    clear_form_import()
+                    $('#modalimport').modal("hide");
+                    reload_table()
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: 'Gagal Upload File Excle',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    return;
+                }
+                if (get_error.indexOf('501') >= 0 || get_error.indexOf('502') >= 0 || get_error.indexOf('503') >= 0 || get_error.indexOf('504') >= 0 || get_error.indexOf('505') >= 0) {
+                    //501 => ada kolom kosong 
+                    //502 => duplikat no absen yg baru, user double no absen 
+                    //503 => duplikat no absen dengan data no absen db
+                    //504 => tidak ada data
+                    //505 => gagal import
+                    var msg = ''
+                    msg = get_error.substring(0, get_error.indexOf('}'))
+                    msg = msg.slice(0, -1)
+                    msg = msg.slice(25)
+                    Swal.fire({
+                        position: 'top-center',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        icon: 'warning',
+                        title: 'Peringatan!',
+                        text: msg
+                    })
+                    clear_form_import()
+                    return;
+                }
+                Swal.fire({
+                    position: 'top-center',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Terdapat kesalahan pada sistem.'
+                })
+                clear_form_import()
+
             }
         });
     })
+
+    function checkVal() {
+
+    }
 
     function process_submit() {
         $("#modalimport").modal('hide')
