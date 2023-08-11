@@ -1,5 +1,9 @@
 <body>
-
+    <style>
+        .active-menu {
+            color: white !important;
+        }
+    </style>
     <!-- Begin page -->
     <div id="layout-wrapper">
 
@@ -142,7 +146,7 @@
                     <ul class="navbar-nav" id="navbar-nav">
                         <!-- <?php if ($this->session->userdata('role_id') == '1') { ?>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?= base_url('dashboard') ?>">
+                                <a id="m_dashboard" class="nav-link menu-link" href="<?= base_url('dashboard') ?>">
                                     <i class="ri-home-4-line"></i> <span data-key="t-widgets">Dashboard</span>
                                 </a>
                             </li>
@@ -150,7 +154,7 @@
                         <?php if ($this->session->userdata('role_id') == '2') { ?>
                             <li class="menu-title"><span data-key="t-menu">Master</span></li>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?= base_url('sosiometri/konselor') ?>">
+                                <a id="m_konselor" class="nav-link menu-link" href="<?= base_url('sosiometri/konselor') ?>">
                                     <i class="ri-account-circle-line"></i> <span data-key="t-widgets">Konselor</span>
                                 </a>
                             </li>
@@ -158,38 +162,38 @@
                         <li class="menu-title"><span data-key="t-menu">Sosiometri</span></li>
                         <?php if ($this->session->userdata('role_id') == '1') { ?>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?= base_url('sosiometri/aktivitas') ?>">
+                                <a id="m_aktivitas" class="nav-link menu-link" href="<?= base_url('sosiometri/aktivitas') ?>">
                                     <i class="ri-account-circle-line"></i> <span data-key="t-widgets">Data Sosiometri</span>
                                 </a>
                             </li>
                         <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= base_url('sosiometri/analisis') ?>">
+                            <a id="m_analisis" class="nav-link menu-link" href="<?= base_url('sosiometri/analisis') ?>">
                                 <i class="ri-team-line"></i> <span data-key="t-widgets">Laporan Analisis</span>
                             </a>
                         </li>
                         <li class="menu-title"><span data-key="t-menu">Setting</span></li>
                         <?php if ($this->session->userdata('role_id') == '2') { ?>
                             <!-- <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?= base_url('dashboard/aplikasi') ?>">
-                                    <i class=" ri-settings-5-line"></i> <span data-key="t-widgets">Aplikasi</span>
-                                </a>
-                            </li> -->
+                            <a class="nav-link menu-link" href="<?= base_url('dashboard/aplikasi') ?>">
+                                <i class=" ri-settings-5-line"></i> <span data-key="t-widgets">Aplikasi</span>
+                            </a>
+                        </li> -->
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?= base_url('sosiometri/smail') ?>">
+                                <a id="m_smail" class="nav-link menu-link" href="<?= base_url('sosiometri/smail') ?>">
                                     <i class="ri-mail-send-line"></i> <span data-key="t-widgets">Email</span>
                                 </a>
                             </li>
                         <?php } ?>
                         <?php if ($this->session->userdata('role_id') == '1') { ?>
                             <li class="nav-item">
-                                <a class="nav-link menu-link" href="<?= base_url('sosiometri/biodata') ?>">
+                                <a id="m_biodata" class="nav-link menu-link" href="<?= base_url('sosiometri/biodata') ?>">
                                     <i class=" ri-settings-5-line"></i> <span data-key="t-widgets">Biodata</span>
                                 </a>
                             </li>
                         <?php } ?>
                         <li class="nav-item">
-                            <a class="nav-link menu-link" href="<?= base_url('auth/logout') ?>">
+                            <a id="m_logout" class="nav-link menu-link" href="<?= base_url('auth/logout') ?>">
                                 <i class="ri-login-box-line"></i> <span data-key="t-widgets">Keluar</span>
                             </a>
                         </li>
@@ -203,3 +207,13 @@
         <!-- Left Sidebar End -->
         <!-- Vertical Overlay-->
         <div class="vertical-overlay"></div>
+        <script src="<?= base_url('assets/default/assets/js/jquery-3.6.0.min.js') ?>"></script>
+        <script>
+            var urlNow = window.location.pathname;
+            var rep = urlNow.split("/");
+            var idMenu = ''
+            if (rep) idMenu = rep['3']
+            if (rep.length <= '3') idMenu = 'dashboard'
+            $('.navbar-nav').find('.nav-link').removeClass('active-menu')
+            $('.navbar-nav').find('#m_' + idMenu).addClass('active-menu')
+        </script>

@@ -37,6 +37,10 @@
         #table-info {
             border: 1px solid black;
         }
+
+        .avatar-title:hover {
+            background-color: #6072AD !important;
+        }
     </style>
 
 </head>
@@ -321,13 +325,13 @@
                                 <div class="row g-2">
                                     <div class="text-center">
                                         <div class="profile-user position-relative d-inline-block mx-auto  mb-4" id="gb-dark">
-                                            <img id="photo-konselor" src="<?= base_url('assets/default/assets/images/konselor/aAsa.jpg') ?>" style="max-height: 210px;max-width: auto;" />
+                                            <img id="photo-konselor" src="<?= base_url('assets/default/assets/images/default.jpg') ?>" style="max-height: 210px;max-width: auto;" />
                                             <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                                 <input id="id_edit3" type="hidden" class="form-control">
                                                 <input id="profile-konselor" type="file" class="profile-img-file-input">
                                                 <label for="profile-konselor" class="profile-photo-edit avatar-xs">
-                                                    <span class="avatar-title rounded-circle bg-light text-body">
-                                                        <i class="ri-camera-fill"></i>
+                                                    <span class="avatar-title rounded-circle bg-primary text-body">
+                                                        <i class="ri-camera-fill" style="color:white"></i>
                                                     </span>
                                                 </label>
                                             </div>
@@ -464,7 +468,7 @@
                                     <img src="<?= base_url() ?>assets/default/assets/images/${data.photo?'konselor/'+data.photo:'default.jpg'}" alt="" class="avatar-xs rounded-circle">
                                 </div>
                                 <div class="flex-grow-1">
-                                    ` + data.name + `<br><a href="#"><span class="badge text-bg-primary" onclick=info_konselor('` + data.id + `')>detil<i class=" ri-arrow-right-line"></i></span></a>
+                                    ` + data.name + `<br><a href="javascript: void(0);"><span class="badge text-bg-primary" onclick=info_konselor('` + data.id + `')>detil<i class=" ri-arrow-right-line"></i></span></a>
                                 </div>
                             </div>`
                     }
@@ -486,7 +490,7 @@
                     "render": function(data) {
                         return `<div class="d-flex gap-2 align-items-center">
                                 <div class="flex-shrink-0">
-                                    <img src="<?= base_url() ?>assets/default/assets/images/${data.logo_sekolah ? 'sekolah/' + data.logo_sekolah : 'fav-simitri.png'}" alt="" class="avatar-xs rounded-circle">
+                                    <img src="<?= base_url() ?>assets/default/assets/images/${data.logo_sekolah ? 'sekolah/' + data.logo_sekolah : 'logo-default.png'}" alt="" class="avatar-xs rounded-circle">
                                 </div>
                                 <div class="flex-grow-1">
                                     <strong>${data.sekolah}</strong><br>${data.alamat}${data.kota || data.provinsi?`, `:''}<br>${data.kota} ${data.provinsi}<br>Telp : ${data.telp_sekolah?data.telp_sekolah:'-'}
@@ -892,7 +896,7 @@
 
                 var html2 = `<div class="row mt-3">
                     <div class="col-4">
-                        <img src="<?= base_url('assets/default/assets/images/konselor/') ?>` + result.photo + `" alt="" class="object-cover w-100" height="220">
+                        <img src="<?= base_url('assets/default/assets/images/') ?>${result.photo ?'konselor/'+result.photo:'default.jpg'}" alt="" class="object-cover w-100" height="220">
                         <h5 class="text-center mt-3">UserID : ` + result.userid + `</h5>
                     </div>
                     <div class="col-8">
@@ -919,7 +923,7 @@
                             </tr>
                             <tr>
                                 <td>Sekolah</td>
-                                <td>` + result.sekolah + `<br>` + result.alamat + `, ` + result.kota + `, ` + result.provinsi + `<br>` + result.telp_sekolah + `</td>
+                                <td>` + result.sekolah + `<br>` + result.alamat + (result.kota ? ', ' + result.kota : '') + (result.provinsi ? ', ' + result.provinsi : '') + `<br>` + result.telp_sekolah + `</td>
                             </tr>
                         </table>
                     </div>
@@ -991,7 +995,7 @@
                 $('#id_edit').val(result.id)
                 $('#id_edit2').val(result.id)
                 $('#id_edit3').val(result.id)
-                $('#photo-konselor').attr('src', `<?= base_url('assets/default/assets/images/konselor/') ?>` + result.photo)
+                $('#photo-konselor').attr('src', `<?= base_url('assets/default/assets/images/') ?>${result.photo?'konselor/':''}` + (result.photo ? result.photo : 'default.jpg'))
 
 
             },
@@ -1028,7 +1032,8 @@
             dataType: "json",
             success: function(result) {
                 if (result.status == "success") {
-                    $('#photo-konselor').attr('src', `<?= base_url('assets/default/assets/images/konselor/') ?>` + result.gambar)
+
+                    $('#photo-konselor').attr('src', `<?= base_url('assets/default/assets/images/') ?>${result.gambar?'konselor/':''}` + (result.gambar ? result.gambar : 'default.jpg'))
 
                     reload_table()
                 } else {

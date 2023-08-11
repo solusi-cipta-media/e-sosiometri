@@ -277,6 +277,7 @@ class Laporan extends CI_Controller
         $joinA = 'tbl_sosiometri b';
         $joinA1 =  'b.batch=a.batch';
         $order = array('a.id' => 'asc');
+        if ($this->session->userdata('role_id') != '2') $where = ['id_konselor' => $this->session->userdata('id')];
         $list = $this->crud2->get_datatables($table, $select, $join, $joinA, $joinA1, $joinB, $joinB1, $column_order, $column_search, $order, $where, $where_orTable, $where_orColumn, $where_orA, $where_orB, $where_orC, $like1, $like2, $where_NotNull, $group_by);
         $data = array();
         $no = $_POST['start'];

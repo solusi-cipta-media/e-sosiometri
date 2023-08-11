@@ -45,6 +45,10 @@ class Sosiometri extends CI_Controller
 
     public function konselor()
     {
+        if ($this->session->userdata('role_id') != '2') {
+            redirect(base_url('Error404'));
+            return;
+        }
         $d = $this->crud->get_all('setting_apps')->row_array();
 
         $data['title'] = $d['nama_usaha'] . ' | Data Konselor';
@@ -58,6 +62,10 @@ class Sosiometri extends CI_Controller
 
     public function smail()
     {
+        if ($this->session->userdata('role_id') != '2') {
+            redirect(base_url('Error404'));
+            return;
+        }
         $d = $this->crud->get_all('setting_apps')->row_array();
         $a = $this->crud->get_all('set_email')->row_array();
 
@@ -116,7 +124,8 @@ class Sosiometri extends CI_Controller
         $column_search = array('id', 'id_konselor', 'nama_konselor', 'sekolah', 'tema', 'kelas', 'jumlah_siswa', 'link', 'batch', 'date_created'); //field yang diizin untuk pencarian 
         $select = 'id, id_konselor, nama_konselor, sekolah, tema, kelas, jumlah_siswa, link, batch, date_created';
         $order = array('id' => 'asc'); // default order 
-        $list = $this->crud->get_datatables($table, $select, $column_order, $column_search, $order);
+        $where = ['id_konselor' => $this->session->userdata('id')];
+        $list = $this->crud->get_datatables($table, $select, $column_order, $column_search, $order, $where);
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $key) {
@@ -140,7 +149,7 @@ class Sosiometri extends CI_Controller
         $output = array(
             "draw" => $_POST['draw'],
             "recordsTotal" => $this->crud->count_all($table),
-            "recordsFiltered" => $this->crud->count_filtered($table, $select, $column_order, $column_search, $order),
+            "recordsFiltered" => $this->crud->count_filtered($table, $select, $column_order, $column_search, $order, $where),
             "data" => $data,
             "query" => $this->db->last_query()
         );

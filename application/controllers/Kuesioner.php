@@ -9,16 +9,6 @@ class Kuesioner extends CI_Controller
         $this->load->model("Crud", "crud");
     }
 
-    // public function index()
-    // {
-    //     $d = $this->crud->get_all('setting_apps')->row_array();
-
-    //     $data['title'] = $d['nama_usaha'] . ' | Kuesioner';
-    //     $data['favicon'] = $d['favicon'];
-
-    //     $this->load->view('kuesioner_mobile', $data);
-    // }
-
     public function link($batch = "")
     {
         if ($batch == "") {
@@ -32,6 +22,7 @@ class Kuesioner extends CI_Controller
         $data['siswa'] = $this->crud->get_where('tbl_siswa_kuesioner', $where)->result_array();
         $data['d'] = $this->crud->get_where('tbl_sosiometri', $where)->row_array();
         $data['logo'] = $this->crud->get_where('user', ['id' => $data['d']['id_konselor']])->row_array()['logo_sekolah'] ?? '';
+        $data['nama_sekolah'] = $this->crud->get_where('user', ['id' => $data['d']['id_konselor']])->row_array()['sekolah'] ?? '';
 
         if (count($data['siswa']) == 0) {
             redirect(base_url('Error404'));
@@ -81,9 +72,6 @@ class Kuesioner extends CI_Controller
         $nama2 = trim($y2[2]);
         $y3 = explode('-', $aa3);
         $nama3 = trim($y3[2]);
-        // $id_nama_siswa_1 = $aa1;
-        // $id_nama_siswa_2 = $aa2;
-        // $id_nama_siswa_3 = $aa3;
 
         //siapkan datanya
         $where = array(
@@ -145,8 +133,6 @@ class Kuesioner extends CI_Controller
         $table = $this->input->post('table');
         $batch = $this->input->post('batch');
 
-        // $a = explode('-', $nama1);
-
         $where = array(
             'batch' => $batch
         );
@@ -197,9 +183,6 @@ class Kuesioner extends CI_Controller
         $batch = $this->input->post('batch');
         $konseli = $this->input->post('konseli');
         $pilihan1 = $this->input->post('pilihan1');
-
-        // echo $pilihan1;
-        // die;
 
         $a = explode('-', $nama2);
         $b = explode('-', $pilihan1);

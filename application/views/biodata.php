@@ -35,7 +35,11 @@
 
 <?php include('menu_header.php') ?>
 
-
+<style>
+    .avatar-title:hover {
+        background-color: #6072AD !important;
+    }
+</style>
 
 <!-- ============================================================== -->
 <!-- Start right Content here -->
@@ -67,12 +71,12 @@
                         <div class="card-body p-4">
                             <div class="text-center">
                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-4">
-                                    <img src="<?= base_url('assets/default/assets/images/sekolah/' . $logo_sekolah) ?>" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
+                                    <img src="<?= base_url() ?>assets/default/assets/images/<?= $logo_sekolah ? 'sekolah/' . $logo_sekolah : 'logo-default.png' ?>" class="rounded-circle avatar-xl img-thumbnail user-profile-image" alt="user-profile-image">
                                     <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                         <input id="profile-img-file-input" type="file" class="profile-img-file-input">
                                         <label for="profile-img-file-input" class="profile-photo-edit avatar-xs">
-                                            <span class="avatar-title rounded-circle bg-light text-body">
-                                                <i class="ri-camera-fill"></i>
+                                            <span class="avatar-title rounded-circle bg-primary text-body">
+                                                <i class="ri-camera-fill" style="color:white"></i>
                                             </span>
                                         </label>
                                     </div>
@@ -213,12 +217,12 @@
                                         <div class="row g-2">
                                             <div class="text-center">
                                                 <div class="profile-user position-relative d-inline-block mx-auto  mb-4" id="gb-dark">
-                                                    <img src="<?= base_url('assets/default/assets/images/konselor/' . $photo) ?>" style="max-height: 210px;max-width: auto;" />
+                                                    <img src="<?= base_url('assets/default/assets/images/' . ($photo ? 'konselor/' . $photo : 'default.jpg')) ?>" style="max-height: 210px;max-width: auto;" />
                                                     <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                                         <input id="profile-img-file-input-dark" type="file" class="profile-img-file-input">
                                                         <label for="profile-img-file-input-dark" class="profile-photo-edit avatar-xs">
-                                                            <span class="avatar-title rounded-circle bg-light text-body">
-                                                                <i class="ri-camera-fill"></i>
+                                                            <span class="avatar-title rounded-circle bg-primary text-body">
+                                                                <i class="ri-camera-fill" style="color:white"></i>
                                                             </span>
                                                         </label>
                                                     </div>
@@ -485,11 +489,16 @@
             dataType: "json",
             success: function(result) {
                 if (result.status == "success") {
-                    Swal.fire(
-                        'Success!',
-                        result.message,
-                        'success'
-                    )
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses!',
+                        text: result.message,
+                        toast: true,
+                        position: "top",
+                        showConfirmButton: false,
+                        timer: 2800,
+                        timerProgressBar: true,
+                    })
                 } else {
                     Swal.fire(
                         'error!',
@@ -533,7 +542,16 @@
             dataType: "json",
             success: function(result) {
                 if (result.status == "success") {
-                    console.log('OK')
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses!',
+                        text: result.message,
+                        toast: true,
+                        position: "top",
+                        showConfirmButton: false,
+                        timer: 2800,
+                        timerProgressBar: true,
+                    })
                 } else {
                     Swal.fire(
                         'error!',
@@ -582,13 +600,23 @@
                                                     <div class="avatar-xs p-0 rounded-circle profile-photo-edit">
                                                         <input id="profile-img-file-input-dark" type="file" class="profile-img-file-input">
                                                         <label for="profile-img-file-input-dark" class="profile-photo-edit avatar-xs">
-                                                            <span class="avatar-title rounded-circle bg-light text-body">
-                                                                <i class="ri-camera-fill"></i>
+                                                            <span class="avatar-title rounded-circle bg-primary text-body">
+                                                                <i class="ri-camera-fill" style="color:white"></i>
                                                             </span>
                                                         </label>
                                                     </div>`
 
                     $('#gb-dark').html(html2)
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Sukses!',
+                        text: result.message,
+                        toast: true,
+                        position: "top",
+                        showConfirmButton: false,
+                        timer: 2800,
+                        timerProgressBar: true,
+                    })
                 } else {
                     Swal.fire(
                         'error!',
