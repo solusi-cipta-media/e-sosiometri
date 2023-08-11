@@ -2,7 +2,6 @@
 <html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
 
 <head>
-
     <meta charset="utf-8" />
     <title><?= $title ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +27,10 @@
             background-position: center;
             background-size: cover;
         }
+
+        .bg-overlay {
+            opacity: .3 !important;
+        }
     </style>
 </head>
 
@@ -45,7 +48,6 @@
                             <div class="row g-0">
                                 <div class="col-lg-6">
                                     <div class="p-lg-5 p-4 h-100 gb-depan">
-                                        <!-- <div class="p-lg-5 p-4 auth-one-bg h-100"> -->
                                         <div class="bg-overlay"></div>
                                         <div class="position-relative h-100 d-flex flex-column">
                                             <div class="mb-4">
@@ -84,14 +86,11 @@
                                                 <?= $this->session->flashdata('message') ?>
                                                 <div class="mb-3">
                                                     <label for="username" class="form-label">Username</label>
-                                                    <input type="text" class="form-control" id="username" name="userid" placeholder="Enter username" value="<?= set_value('username') ?>">
+                                                    <input type="text" class="form-control" id="username" name="userid" placeholder="Enter username" value="<?= set_value('username') ?>" autofocus="true">
                                                     <?= form_error('userid', '<small class="text-danger">', '</small>') ?>
                                                 </div>
 
                                                 <div class=" mb-3">
-                                                    <!-- <div class="float-end">
-                                                        <a href="<?= base_url('auth/authreset') ?>" class="text-muted">Lupa password?</a>
-                                                    </div> -->
                                                     <label class="form-label" for="password-input">Password</label>
                                                     <div class="position-relative auth-pass-inputgroup mb-3">
                                                         <input type="password" class="form-control pe-5 password-input" placeholder="Enter password" id="password-input" name="password">
@@ -100,41 +99,10 @@
                                                     </div>
                                                 </div>
 
-                                                <!-- <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="" id="auth-remember-check">
-                                                    <label class="form-check-label" for="auth-remember-check">Remember me</label>
-                                                </div> -->
-
                                                 <div class="mt-3">
                                                     <button class="btn btn-success w-100" type="submit" name="login" id="login">Sign In</button>
                                                 </div>
                                             </form>
-                                            <!-- <form action="<?= base_url('lacak') ?>" method="POST">
-
-                                                <div class="mt-4 text-center">
-                                                    <div class="signin-other-title">
-                                                        <h5 class="fs-13 mb-4 title">Cek Kendaraan Anda!</h5>
-                                                    </div>
-
-                                                    <div>
-                                                        <input type="text" class="form-control" id="id_pesanan" name="id_pesanan" placeholder="Masukan Nomor ID Pesanan yang tersedia di Struk QR" style="text-align: center;">
-                                                        <button type="submit" class="btn btn-primary btn-sm waves-effect waves-light mt-2" id="btn-lacak"><i class="ri-search-line"></i> Lacak!</button>
-                                                    </div>
-                                                </div> -->
-                                            <!-- <div class="mt-4 text-center">
-                                                    <div class="signin-other-title">
-                                                        <h5 class="fs-13 mb-4 title">Sign In with</h5>
-                                                    </div>
-
-                                                    <div>
-                                                        <button type="button" class="btn btn-primary btn-icon waves-effect waves-light"><i class="ri-facebook-fill fs-16"></i></button>
-                                                        <button type="button" class="btn btn-danger btn-icon waves-effect waves-light"><i class="ri-google-fill fs-16"></i></button>
-                                                        <button type="button" class="btn btn-dark btn-icon waves-effect waves-light"><i class="ri-github-fill fs-16"></i></button>
-                                                        <button type="button" class="btn btn-info btn-icon waves-effect waves-light"><i class="ri-twitter-fill fs-16"></i></button>
-                                                    </div>
-                                                </div> -->
-
-                                            <!-- </form> -->
                                         </div>
                                         <div class="mt-5 mb-1 text-center">
                                             <a href="<?= base_url('auth/authreset') ?>" class="text-muted">Lupa password?</a>

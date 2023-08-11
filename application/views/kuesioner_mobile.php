@@ -46,9 +46,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <img src="<?= base_url() ?>assets/default/assets/images/<?= $logo ? 'sekolah/' . $logo : 'simitri.png' ?>" style="max-width: 120px;">
+                            <img src="<?= base_url() ?>assets/default/assets/images/<?= $logo ? 'sekolah/' . $logo : 'logo-default.png' ?>" style="max-width: 120px;">
                             <h2 class="text-white mb-1">Kuesioner E-Sosiometri</h2>
-                            <h5 class="text-white mb-3">SMP N1 Malang</h5>
+                            <h5 class="text-white mb-3"><?= $nama_sekolah ?></h5>
                         </div>
                     </div>
                 </div>
@@ -246,12 +246,7 @@
                         <!-- end card -->
                     </div>
                     <!-- end col -->
-
                 </div>
-
-
-
-
             </div>
             <!-- end container -->
         </div>
@@ -336,7 +331,6 @@
 
                         var html = '<option value="">--Pilih Teman Anda--</option>';
                         result.forEach(d => {
-                            // html += `<option value="${d.id}">${d.no_absen + '-' + d.nama}</option>`;
                             html += '<option value="' + d.no_absen + '-' + d.nama + '-' + d.id + '">' + d.no_absen + '-' + d.nama + '</option>';
                         });
                         $('#nama1').html(html);
@@ -479,7 +473,6 @@
                     alasan3: $('#alasan3').val()
                 },
                 success: function(result) {
-                    console.log(result)
                     if (result == 200) {
                         $('#question').hide();
                         $('#thankyou').show('500');
@@ -497,8 +490,6 @@
             $('#error_nama1').hide()
         }
         b = $('#nama1').val()
-        // var nama1 = $('#nama1').val()
-        // alert(nama1)
         $.ajax({
             url: '<?= base_url() ?>kuesioner/getpilihan1',
             data: {
@@ -513,7 +504,6 @@
 
                 var html = '<option value="">--Pilih Teman Anda--</option>';
                 result.forEach(d => {
-                    // html += `<option value="${d.id}">${d.no_absen + '-' + d.nama}</option>`;
                     html += '<option value="' + d.no_absen + '-' + d.nama + '-' + d.id + '">' + d.no_absen + '-' + d.nama + '</option>';
                 });
                 $('#nama2').html(html);
@@ -525,8 +515,6 @@
         if ($('#nama2').val() != '') {
             $('#error_nama2').hide()
         }
-        // var nama2 = $('#nama2').val()
-        // alert(nama2)
         $.ajax({
             url: '<?= base_url() ?>kuesioner/getpilihan2',
             data: {
@@ -542,7 +530,6 @@
 
                 var html = '<option value="">--Pilih Teman Anda--</option>';
                 result.forEach(d => {
-                    // html += `<option value="${d.id}">${d.no_absen + '-' + d.nama}</option>`;
                     html += '<option value="' + d.no_absen + '-' + d.nama + '-' + d.id + '">' + d.no_absen + '-' + d.nama + '</option>';
                 });
                 $('#nama3').html(html);
@@ -554,7 +541,5 @@
         if ($('#nama3').val() != '') {
             $('#error_nama3').hide()
         }
-        // var nama3 = $('#nama3').val()
-        // alert(nama3)
     });
 </script>
